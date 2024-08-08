@@ -1,0 +1,325 @@
+.container_event {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .container_event .div {
+    width: 375px;
+    height: 1000px;
+  }
+  
+  .container_event .text-wrapper {
+    position: absolute;
+    top: 100px;
+    left: 34px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 15px;
+    letter-spacing: -0.33px;
+    line-height: normal;
+    white-space: nowrap;
+  }
+  
+  .container_event .overlap {
+    position: absolute;
+    width: 336px;
+    height: 437px;
+    top: 150px;
+    left: 20px;
+  }
+  
+  .container_event .image {
+    position: absolute;
+    width: 335px;
+    height: 436px;
+    top: 1px;
+    left: 0;
+  }
+  
+  .container_event .flexcontainer {
+    width: 24px;
+    height: 122px;
+    top: 650px;
+    left: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .text {
+    position: relative;
+    align-self: stretch;
+    font-family: "Pretendard-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 12px;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .span {
+    letter-spacing: -0.04px;
+  }
+  
+  .container_event .flexcontainer-2 {
+    width: 256px;
+    height: 122px;
+    top: 650px;
+    left: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .text-wrapper-4 {
+    position: absolute;
+    top: 600px;
+    left: 20px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 18px;
+    white-space: nowrap;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .text-wrapper-5 {
+    position: absolute;
+    top: 1090px;
+    left: 20px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 18px;
+    white-space: nowrap;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .text-wrapper-6 {
+    position: absolute;
+    top: 1343px;
+    left: 20px;
+    font-family: "Pretendard-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 18px;
+    white-space: nowrap;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .overlap-wrapper {
+    position: absolute;
+    width: 92px;
+    height: 36px;
+    top: 859px;
+    left: 143px;
+  }
+  
+  .container_event .div-wrapper {
+    position: relative;
+    width: 90px;
+    height: 36px;
+    background-color: #5271ff;
+    border-radius: 10px;
+  }
+  
+  
+  .container_event .text-wrapper-7 {
+    position: absolute;
+    top: 9px;
+    left: 15px;
+    font-family: "Pretendard-Black", Helvetica;
+    font-weight: 900;
+    color: #ffffff;
+    font-size: 15px;
+    text-align: center;
+    white-space: nowrap;
+    letter-spacing: -0.15px;
+    line-height: normal;
+  }
+  
+  .container_event .vector {
+    position: absolute;
+    width: 346px;
+    height: 2px;
+    top: 919px;
+    left: 14px;
+  }
+  
+  .container_event .img {
+    position: absolute;
+    width: 346px;
+    height: 2px;
+    top: 1107px;
+    left: 14px;
+  }
+  
+  .container_event .vector-2 {
+    position: absolute;
+    width: 346px;
+    height: 2px;
+    top: 1201px;
+    left: 14px;
+  }
+  
+  .container_event .vector-3 {
+    position: absolute;
+    width: 346px;
+    height: 2px;
+    top: 1389px;
+    left: 14px;
+  }
+  
+  .container_event .flexcontainer-3 {
+    width: 326px;
+    height: 92px;
+    top: 944px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .span-wrapper {
+    position: relative;
+    align-self: stretch;
+    font-family: "Pretendard-Regular", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 12px;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .text-wrapper-8 {
+    color: #5271ff;
+    letter-spacing: -0.04px;
+  }
+  
+  .container_event .text-wrapper-9 {
+    color: #000000;
+    letter-spacing: -0.04px;
+  }
+  
+  .container_event .flexcontainer-4 {
+    width: 93px;
+    height: 28px;
+    top: 1132px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .p {
+    position: relative;
+    align-self: stretch;
+    font-family: "Pretendard-Regular", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 10px;
+    letter-spacing: -0.33px;
+    line-height: normal;
+  }
+  
+  .container_event .text-wrapper-10 {
+    color: #5271ff;
+    letter-spacing: -0.03px;
+  }
+  
+  .container_event .text-wrapper-11 {
+    color: #000000;
+    letter-spacing: -0.03px;
+  }
+  
+  .container_event .flexcontainer-5 {
+    width: 93px;
+    height: 28px;
+    top: 1226px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .flexcontainer-6 {
+    width: 93px;
+    height: 52px;
+    top: 1414px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .text-wrapper-12 {
+    color: #5271ff;
+    font-size: 7px;
+    letter-spacing: -0.02px;
+  }
+  
+  .container_event .text-wrapper-13 {
+    color: #000000;
+    font-size: 7px;
+    letter-spacing: -0.02px;
+  }
+  
+  .container_event .flexcontainer-7 {
+    width: 93px;
+    height: 44px;
+    top: 1132px;
+    left: 141px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .flexcontainer-8 {
+    width: 93px;
+    height: 92px;
+    top: 1226px;
+    left: 141px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+  
+  .container_event .flexcontainer-9 {
+    width: 93px;
+    height: 28px;
+    top: 1132px;
+    left: 258px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    position: absolute;
+  }
+
+  .line {
+    width: 100%;
+    height: 0.5px; /* 선의 두께 설정 */
+    background-color: rgb(149, 148, 148); /* 선의 색상 설정 */
+  }

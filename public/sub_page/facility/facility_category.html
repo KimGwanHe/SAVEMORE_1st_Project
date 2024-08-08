@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 편의시설 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="./google-apps-script.js"></script>
+
+    <style>  /* 앱 화면을 기준으로 개발 */
+
+        body{
+            min-width: 375px;
+            height: 100%;
+        }
+        #fullpage{
+            padding-bottom: 40px;
+            height: 100%;
+        }
+
+        .container_culturecategory {
+            margin: 0 auto;
+            /* min-width: 375px; */
+            width : 90%;
+            height: 100%;
+            background-color: white;  /*색 골라야함*/
+            border-radius: 10px;
+            /* margin-bottom: 30px; */
+        }
+        
+        .title_text{
+            margin: 10px auto 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        #fullpage > img{
+            border-radius: 15px;
+            display: block;
+            margin: 20px auto;
+            width: 90%;
+            height: 190px;
+            max-width: 600px;
+        }
+
+        .culturetext {
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 10px;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #5271FF;
+        }
+
+        .culturecategory {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+            margin-left: 10%;
+            padding-bottom: 10px;
+            }
+
+        .culturecategory > button {
+            flex: 0 0 40%;;
+            margin: 7px;
+            font-size: 15px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid rgb(141, 136, 136);
+            border-radius: 10px;
+            box-shadow: 0 0 3px rgba(15, 15, 16, 0.5);
+        }
+
+        .culturecategory > button:hover {
+            background-color: #5271FF;
+            color: white;
+        }
+        .culturecategory > button:last-of-type {
+            margin-bottom: 30px;
+        }
+
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+         @media screen and (min-width: 768px) {
+            #fullpage {
+            /* background-color: yellow; */
+            width: 70%;
+            margin: 0 auto;
+            padding-top: 100px;
+            height: 800px;
+        }
+        .title_text{
+            font-size: 25px;
+            padding: 20px 0px 20px 0px;
+
+        }
+        #fullpage > img{
+            width: 70%;
+            margin-bottom: 40px;
+            height: 40%;
+        }
+        .container_culturecategory {
+            width: 70%;
+            max-width: 600px;
+            background-color: white;
+            margin:0 auto;
+            height: auto;
+        }
+        .culturetext{
+            font-size: 20px;
+        }
+
+        .culturecategory > button {
+            margin: 3%;
+            padding: 4%;
+            font-size: 20px;
+        }
+        .culturecategory > button:last-of-type {
+            margin-bottom: 30px;
+        }
+    }    
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'" class="btn_login">로그인</button></div>
+                            </li>
+                            <li class="page1"><a href="facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <div class="title">
+                <h2 class="title_text">무료 편의시설</h2>
+            </div>
+            <img id="facility-img" src="../../img/library.png" alt="편의시설">
+            <div class="container_culturecategory">
+                <div class="culturetext"><h4>구분</h4></div>
+                <section class="culturecategory">
+                    <button onclick="window.location.href='library.html'">공공 도서관</button>
+                    <button onclick="window.location.href='jobcafe_slidelist.html'">일자리 카페</button>
+                    <!-- <button onclick="window.location.href='kitchen_slidelist.html'">무료 급식소</button> -->
+                    <button onclick="window.location.href='jobagency_slidelist.html'" style="height: 40px;">직업 소개소</button>
+                    <button onclick="window.location.href='wifi.html'">공공 와이파이</button>
+                </section>
+            </div>
+        </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+$(document).ready(function () {
+        function loadFacilityImage() {
+            $.ajax({
+                url: '/api/ads/active',
+                method: 'GET',
+                success: function (response) {
+                    const activeAds = response.activeAds;
+                    const facilityAd = activeAds.find(ad => ad.position === 7);
+                    
+                    if (facilityAd) {
+                        $('#facility-img').attr('src', facilityAd.img_url);
+                        $('#facility-img').closest('a').attr('href', facilityAd.detail_url);
+
+                        console.log(`Position 7 - URL: ${facilityAd.detail_url}, Image: ${facilityAd.img_url}`);
+                    }
+                },
+                error: function (error) {
+                    console.error('Error loading ads:', error);
+                }
+            });
+        }
+
+        loadFacilityImage();
+    });
+
+
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+</html>

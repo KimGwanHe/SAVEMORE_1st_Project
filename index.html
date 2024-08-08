@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 메인페이지 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="./public/img/logo1.png">
+    
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="./public/css/slick.css">
+    <link rel="stylesheet" href="./public/css/slick-theme.css">
+    <link rel="stylesheet" href="./public/css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./public/js/jquery.fullPage.js"></script>
+    <script src="./public/js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <script src="./google-apps-script.js"></script> -->
+
+    <style>
+        /* 앱 화면을 기준으로 개발 */
+
+        body {
+            min-width: 375px;
+            background: linear-gradient(135deg, #295fd5, #9d8ce0);
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            height: auto;
+        }
+
+        #fullpage {
+            height: auto;
+        }
+
+        #wrapper {
+            background-color: none;
+            background: linear-gradient(135deg, #295fd5, #9d8ce0);
+        }
+
+        .container_main {
+            margin: 0px auto 30px;
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+
+        }
+
+        .title_text {
+            text-shadow: 2px 2px 6px rgb(20, 20, 20);
+            padding: 10px;
+            padding-bottom: 0;
+            margin: 40px auto 20px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .intro {
+            position: relative;
+        }
+        .logo_warp{
+            background-color: yellow;
+            width: 80%;
+        }
+
+        .intro #logo_back {
+            margin-top: 30px;
+            width: 100%;
+            box-shadow: 3px 3px 10px rgba(248, 248, 248, 0.5);
+        }
+        .intro #logo3 {
+            position: absolute;
+            width: 40%;  
+            top: 28%;
+            left: 10%;
+        }
+
+        .intro p {
+            letter-spacing: 0spx;
+            font-size: 17px;
+            font-weight: 400;
+            width: 60%;
+            height: 50%;
+            line-height: 2.5;
+            text-align: right;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgb(0, 0, 0);
+        }
+
+        .intro span {
+            font-weight: 900;
+            font-size: 20px;
+            color: #295fd5;
+            text-shadow: 0px 0px 0px rgb(255, 255, 255);
+        }
+
+        .intro p,
+        .intro span,
+        .intro #logo3 {
+            animation: move 2s;
+            animation-fill-mode: both;
+        }
+
+        .intro p {
+            animation-delay: 0.2s;
+        }
+
+        .intro span {
+            animation-delay: 1.5s;
+        }
+        .intro #logo3{
+            animation-delay: 2.5s;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        .section input[id*="slide"] {
+            display: none;
+        }
+
+        .section .slidewrap {
+            width: 100%;
+        }
+
+        .section .slidelist {
+            white-space: nowrap;
+            font-size: 0;
+            overflow: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section .slidelist>li {
+            display: inline-block;
+            vertical-align: middle;
+            width: 100%;
+            transition: all .5s;
+            margin: 0px auto;
+        }
+
+        .section .slidelist>li>a {
+            display: block;
+            position: relative;
+        }
+
+        .section .slidelist>li>a img {
+            border-radius: 20px;
+            width: 100%;
+        }
+
+        .section .slidelist label {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 50px;
+            cursor: pointer;
+        }
+
+        .section .slidelist .textbox {
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .section .slidelist .textbox h3 {
+            font-size: 36px;
+            color: #fff;
+            ;
+            transform: translateY(30px);
+            transition: all .5s;
+        }
+
+        .section .slidelist .textbox p {
+            font-size: 16px;
+            color: #fff;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .5s;
+        }
+
+        /* input에 체크되면 슬라이드 효과 */
+        .section input[id="slide01"]:checked~.slidewrap .slidelist>li {
+            transform: translateX(0%);
+        }
+
+        .section input[id="slide02"]:checked~.slidewrap .slidelist>li {
+            transform: translateX(-100%);
+        }
+
+        .section input[id="slide03"]:checked~.slidewrap .slidelist>li {
+            transform: translateX(-200%);
+        }
+
+        /* input에 체크되면 텍스트 효과 */
+        .section input[id="slide01"]:checked~.slidewrap li:nth-child(1) .textbox h3 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .2s;
+        }
+
+        .section input[id="slide01"]:checked~.slidewrap li:nth-child(1) .textbox p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .4s;
+        }
+
+        .section input[id="slide02"]:checked~.slidewrap li:nth-child(2) .textbox h3 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .2s;
+        }
+
+        .section input[id="slide02"]:checked~.slidewrap li:nth-child(2) .textbox p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .4s;
+        }
+
+        .section input[id="slide03"]:checked~.slidewrap li:nth-child(3) .textbox h3 {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .2s;
+        }
+
+        .section input[id="slide03"]:checked~.slidewrap li:nth-child(3) .textbox p {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: .4s;
+        }
+
+        /* 좌,우 슬라이드 버튼 */
+        .slide-control>div {
+            display: none;
+        }
+
+        .section .left {
+            left: -30px;
+            background: url('./public/img/left.png') center center / 50% no-repeat;
+        }
+
+        .section .right {
+            right: -30px;
+            background: url('./public/img/right.png') center center / 50% no-repeat;
+        }
+
+        .section input[id="slide01"]:checked~.slidewrap .slide-control>div:nth-child(1) {
+            display: block;
+        }
+
+        .section input[id="slide02"]:checked~.slidewrap .slide-control>div:nth-child(2) {
+            display: block;
+        }
+
+        .section input[id="slide03"]:checked~.slidewrap .slide-control>div:nth-child(3) {
+            display: block;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+        }
+
+        .inner1 {
+            width: 300%; /* 3개의 이미지를 나란히 배치하기 위해 */
+            height: 250px;
+            display: flex;
+            /* animation: slideChange01 20s infinite; */
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* @keyframes slideChange01 {
+            0% { transform: translateX(0%); }
+            33% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            100% { transform: translateX(0%); }
+        } */
+
+        .inner2 {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            animation: imgChange02 15s infinite;
+        }
+
+        @keyframes imgChange02 {
+            0% { background: url('image4.jpg') center no-repeat; background-size: cover; }
+            33% { background: url('image5.jpg') center no-repeat; background-size: cover; }
+            66% { background: url('image6.jpg') center no-repeat; background-size: cover; }
+            100% { background: url('image4.jpg') center no-repeat; background-size: cover; }
+        }
+
+        /* 페이징 */
+        .slide-pagelist {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .slide-pagelist>li {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .slide-pagelist>li>label {
+            display: inline-block;
+            padding: 8px 30px;
+            border-radius: 20px;
+            background: #ccc;
+            margin: 0px 10px;
+            cursor: pointer;
+        }
+
+        .slide-pagelist label.active {
+            background-color: rgb(68, 61, 120);
+        }
+
+        .section input[id="slide01"]:checked~.slidewrap .slide-pagelist>li:nth-child(1)>label {
+            background: #999;
+        }
+
+        .section input[id="slide02"]:checked~.slidewrap .slide-pagelist>li:nth-child(2)>label {
+            background: #999;
+        }
+
+        .section input[id="slide03"]:checked~.slidewrap .slide-pagelist>li:nth-child(3)>label {
+            background: #999;
+        }
+
+
+        /* gallery아티클 영역 */
+        #gallery {
+            width: 100%;
+            text-align: center;
+            height: 100%;
+            max-width: 600px;
+        }
+
+        #gallery>div {
+            margin-bottom: -60px;
+        }
+
+        #gallery>div>h3 {
+            margin: 10px auto;
+            margin-right: 20px;
+        }
+
+        #gallery>div>div:nth-of-type(1) {
+            height: 700px;
+            width: 100%;
+            max-width: 800px;
+            /* background: url(./public/img/gallery1.jpg) center center no-repeat; */
+            /* animation: imgChange01 15s infinite; */
+            animation-fill-mode: both;
+        }
+
+        @media screen and (min-width: 500px) {
+        .intro #logo3 {
+            position: absolute;
+            width: 35%;  
+            top: 25%;
+            left: 15%;
+        }
+
+        .intro p {
+            letter-spacing: 0px;
+            font-size: 1.4rem;
+            font-weight: 400;
+            width: 60%;
+            height: 50%;
+            line-height: 2;
+            text-align: right;
+            position: absolute;
+            top: 35%;
+            right: 10%;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgb(0, 0, 0);
+        }
+
+        .intro span {
+            font-weight: 700;
+            font-size: 30px;
+            color: #295fd5;
+            text-shadow: 0px 0px 0x rgb(255, 255, 255);
+        }
+
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+        @media screen and (min-width: 768px) {
+            #fullpage {
+                /* background-color: yellow; */
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 100px;
+                height: auto;
+            }
+
+            .container_main {
+                width: 60%;
+                max-width: 800px;
+                margin: 50px auto;
+                height: auto;
+            }
+
+
+            .title_text {
+                font-size: 25px;
+                margin: 100px auto 40px;
+            }
+
+
+
+        .sub_text {
+                font-size: 20px;
+            }
+
+        #gallery {
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        #gallery>div {
+            width: 100%;
+            margin: 10px auto;
+            margin-bottom: -140px;
+        }
+
+        #gallery>div>h3 {
+            margin: 40px auto 40px;
+            margin-right: 20px;
+        }
+        
+        #gallery>div>div:nth-of-type(1) {
+            width: 100%;
+            height: 800px;
+        }
+
+    }
+
+    @media screen and (min-width: 1200px) {
+        .intro #logo3 {
+            position: absolute;
+            width: 35%;  
+            top: 25%;
+            left: 15%;
+        }
+
+        .intro p {
+            font-size: 2rem;
+            font-weight: 400;
+            width: 60%;
+            height: 50%;
+            line-height: 2;
+            text-align: right;
+            position: absolute;
+            top: 35%;
+            right: 13%;
+        }
+
+        .intro span {
+            font-weight: 700;
+            font-size: 40px;
+        }
+
+    }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <h1><a href="#">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <div class="containerimg">
+                                    <img src="/public/img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="btn_warp">
+                                    <button onclick="window.location.href='/public/sub_page/member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='/public/sub_page/member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='/public/sub_page/main/login.html'" class="btn_login">로그인</button>
+                                </div>
+                            </li>
+                            <li class="page1"><a href="./public/sub_page/facility/facility_category.html">편의시설</a></li>
+                            <li class="page1"><a href="./public/sub_page/lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="./public/sub_page/culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="./public/sub_page/price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="./public/sub_page/bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+        <!-- 오버레이 요소 추가 -->
+        <div class="overlay"></div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+                var mBtn = $(".smallmenu");
+                var closeBtn = $(".xmenu");
+
+                // 버튼 클릭 이벤트
+                $(mBtn).click(function () {
+                    $("nav").css("right", "0");
+                    $(closeBtn).css("display", "block");
+                });
+                // 닫기 버튼 클릭 이벤트
+                $(closeBtn).click(function () {
+                    $("nav").css("right", "-100%");
+                    $(closeBtn).css("display", "none");
+                });
+                 // 전체 화면 클릭 이벤트
+                $(document).click(function (event) {
+                    if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                        $("nav").css("right", "-100%");
+                        $(closeBtn).css("display", "none");
+                    }
+                });
+                // nav 안에서는 닫히지 않게
+                $("nav").click(function (e) {
+                    e.stopPropagation();
+                });
+            });
+        </script>
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <!--수정할 곳 container_(페이지이름)-->
+            <div class="container_main">
+                <div class="intro">
+                    <img src="./public/img/logo_back.jpg" id="logo_back" alt="로고">
+                    <img src="./public/img/logo3.png"  id="logo3" alt="로고">
+                    <p><span>언제</span> 어디서나<br>
+                        <span>도움</span> 이 필요할 땐<br>
+                    </p>
+                </div>
+                <div class="title_text">
+                    <h3>이달의 소식</h3>
+                </div>
+                <div class="section">
+                    <div class="slider-container">
+                        <div class="slidelist">
+                            <div id="animateds1" class="inner1"></div>
+                        </div>
+                    </div>
+                        <!-- 페이징 -->
+                        <ul class="slide-pagelist">
+                            <li><label for="postion1" onclick="startAnimation(0)"></label></li>
+                            <li><label for="postion2" onclick="startAnimation(1)"></label></li>
+                            <li><label for="postion3" onclick="startAnimation(2)"></label></li>
+                        </ul>
+                </div>
+
+
+                </div>
+                <article id="gallery">
+                    <div class="title_text">
+                        <h3>복지서비스</h3>
+                    </div>
+                    <div>
+                        <div>
+                            <div id="animateds2" class="inner2">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function () {
+    let adsForAnimation1 = [];
+    let currentIndex = 0;
+    let isTransitioning = false;
+    let autoSlideInterval;
+
+    function loadActiveAds() {
+        $.ajax({
+            url: '/api/ads/active',
+            method: 'GET',
+            success: function (response) {
+                const activeAds = response.activeAds;
+                console.log('광고 데이터:', activeAds);
+
+                // Position 1, 2, 3
+                adsForAnimation1 = activeAds.filter(ad => ad.position >= 1 && ad.position <= 3);
+                if (adsForAnimation1.length === 3) {
+                    $('#animateds1').empty();
+                    adsForAnimation1.forEach(ad => {
+                        $('#animateds1').append(`<div class="slide-image" style="background: url(${ad.img_url}); background-size: cover;"></div>`);
+                    });
+
+                    // 순환을 위해 첫 번째 이미지를 다시 추가
+                    $('#animateds1').append(`<div class="slide-image" style="background: url(${adsForAnimation1[0].img_url}); background-size: cover;"></div>`);
+
+                    $('#animateds1').css({
+                        'width': '400%', /* 순환을 위해 추가된 이미지를 고려하여 너비 조정 */
+                        'display': 'flex',
+                    });
+
+                    // 초기 전환 문제 해결을 위한 트릭
+                    setTimeout(() => {
+                        $('#animateds1').css('transition', 'transform 1s');
+                    }, 30);
+
+                    updatePagination(currentIndex);
+                    startAutoSlide();
+                }
+
+                // Position 4, 5, 6
+                const adsForAnimation2 = activeAds.filter(ad => ad.position >= 4 && ad.position <= 6);
+                if (adsForAnimation2.length === 3) {
+                    const keyframes2 = `
+                        @keyframes imgChange02 {
+                            0% { background: url(${adsForAnimation2[0].img_url}) center no-repeat; background-size: cover; }
+                            33% { background: url(${adsForAnimation2[1].img_url}) center no-repeat; background-size: cover; }
+                            66% { background: url(${adsForAnimation2[2].img_url}) center no-repeat; background-size: cover; }
+                            100% { background: url(${adsForAnimation2[0].img_url}) center no-repeat; background-size: cover; }
+                        }
+                    `;
+                    const styleSheet2 = document.createElement("style");
+                    styleSheet2.type = "text/css";
+                    styleSheet2.innerText = keyframes2;
+                    document.head.appendChild(styleSheet2);
+
+                    $('#animateds2').css({
+                        'animation': 'imgChange02 15s infinite',
+                        'width': '100%',
+                        'height': '500px',
+                        'background-size': 'cover',
+                        'background-position': 'center'
+                    });
+                }
+            },
+            error: function (error) {
+                console.error('url 안가져옴:', error);
+            }
+        });
+    }
+
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            if (!isTransitioning) {
+                isTransitioning = true;
+                currentIndex++;
+                $('#animateds1').css('transform', `translateX(-${currentIndex * 100 / (adsForAnimation1.length + 1)}%)`);
+
+                // 페이지네이션 업데이트를 500ms 지연
+                setTimeout(() => updatePagination(currentIndex), 300);
+
+                // 마지막 이미지에 도달했을 때 첫 번째 이미지로 자연스럽게 전환
+                if (currentIndex === adsForAnimation1.length) {
+                    setTimeout(() => {
+                        $('#animateds1').css('transition', 'none');
+                        $('#animateds1').css('transform', 'translateX(0)');
+                        currentIndex = 0;
+                        setTimeout(() => updatePagination(currentIndex), 300); // 페이지네이션 업데이트 지연
+                        setTimeout(() => {
+                            $('#animateds1').css('transition', 'transform 1s');
+                            isTransitioning = false;
+                        }, 50);
+                    }, 1000);
+                } else {
+                    isTransitioning = false;
+                }
+            }
+        }, 2500);
+    }
+
+    window.startAnimation = function(position) {
+        clearInterval(autoSlideInterval); // 자동 슬라이드 중지
+        currentIndex = position;
+        $('#animateds1').css('transform', `translateX(-${currentIndex * 100 / (adsForAnimation1.length + 1)}%)`);
+        updatePagination(currentIndex);
+        startAutoSlide(); // 자동 슬라이드 재시작
+    }
+
+    function updatePagination(index) {
+        $('.slide-pagelist label').removeClass('active');
+        $('.slide-pagelist label').eq(index % adsForAnimation1.length).addClass('active');
+    }
+
+    loadActiveAds();
+});
+
+
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+</html>

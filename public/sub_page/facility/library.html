@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 공공도서관 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+    <script
+    type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291c0031d5303797fc6e590328265969&libraries=services"></script>
+    <!-- <script src="./maptest.js"></script> -->
+    
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <script src="./google-apps-script.js"></script> -->
+    
+
+    <style>  /* 앱 화면을 기준으로 개발 */
+        body{
+            min-width: 375px;
+            height: 100%;
+        }
+        #fullpage{
+            padding-bottom: 40px;
+            height: 100%;
+        }
+
+        #wrapper {
+            height: 100%;
+        }
+
+
+        .container_library {
+            margin: 0 auto;
+            /* min-width: 375px; */
+            width : 90%;
+            height: 100%;
+            background-color: white;  /*색 골라야함*/
+            border-radius: 10px;
+            /* margin-bottom: 30px; */
+        }
+
+        .toptext {
+            text-align: center;
+        }
+
+        .title > h3 {
+            clear: both;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        .librarytext {
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 0;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: #5271FF;
+        }
+
+        .library {
+            display: block;
+            justify-content: center;
+            flex: 0 0 40%;;
+            margin: 0 auto;
+            font-size: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid rgb(141, 136, 136);
+            border-radius: 10px;
+            box-shadow: 0 0 3px rgba(15, 15, 16, 0.5);
+            width: 90%;
+            padding-bottom: 10px;
+        }
+
+        .smalllibrary {
+            margin-left: 7px;
+        }
+
+        .toggle-button {
+            margin-top: 10px;
+            font-size: 10px;
+            cursor: pointer;
+            width: 98%;
+            margin-right: 7px;
+            background-color: #d4d5db;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .accordion-content {
+            /* display: none; */
+            padding: 3%;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 300px;
+            margin: 0 auto;
+            border: 0.5px solid black;
+        }
+
+        #map {
+            width: 100%;
+            height: 300px;
+        }
+
+
+        #number-list{
+            width: 100%;
+            height: 70px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .number-lists{
+            /* height: 50px; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50%;
+            padding: auto;
+        }
+        .number-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20%;
+            list-style: none;
+            padding: 0;
+        }
+        #number-list>div>div>div:hover{
+            cursor: pointer;
+            color: blue;
+            font-weight: bold;
+        }
+        div.move{
+            line-height: 3;
+        }
+        div.move:hover{
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+         @media screen and (min-width: 768px) {
+            #fullpage {
+            /* background-color: yellow; */
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 100px;
+            height: 800px;
+        }
+        
+        .container_library{
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            margin:0 auto;
+            height: auto;
+        }
+        .title > h3 {
+            font-size: 25px;
+            padding-top: 10px;
+            margin-bottom: 10px;
+        }
+        .librarytext {
+            font-size: 20px;
+        }
+        .map-container {
+            width: 100%;
+        }
+
+        .map-container > map {
+            width: 100%;
+            height: 500px;
+        }
+    
+    }    
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'" class="btn_login">로그인</button></div>
+                            </li>
+                            <li class="page1"><a href="facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+        <!--fullpage-->
+        <div id="fullpage">        
+            <!--수정할 곳 container_(페이지이름)-->
+            <div class="title">
+                <h3>편의시설</h3>
+            </div>
+            <div class="container_library">
+                <div class="librarytext"><h4 class="toptext">공공 도서관 안내</h4></div>
+                <div class="loading-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <h2>loading ...</h2>
+                </div>
+                <div class="item">
+                    <div class="library">
+                        <div class="smalllibrary">
+                            <p>공공 도서관</p><br>
+                            <h4>강동구립강일도서관</h4><br>
+                            <p>서울특별시 강동구 아리수로 93번길 9-14</p>
+                            <button class="toggle-button">▼</button>
+                        </div>
+                        <div class="accordion-content">
+                            <p>도서관 전화번호 : 02-427-7676</p>
+                            <p>홈페이지 URL : </p>
+                            <p>운영시간 : </p>
+                            <p>평일 : 09:00~18:00 / 주말 : 09:00~17:00</p>
+                            <p>매주 화요일 및 법정 공휴일 휴무</p>
+                            <div class="map-container">
+                                <div class="map-container">
+                                    <div id="map1" style="width: 100%; height: 300px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div id="number-list">
+                        <div class="number-lists">
+                            <div onclick="page_minus()" class="move" id="back">&lt;</div>
+                            <div class="number"></div>
+                            <div onclick="page_plus()" class="move" id="front">&gt;</div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+</body>
+<script>
+    //http://openapi.seoul.go.kr:8088/(인증키)/xml/SeoulPublicLibraryInfo/1/5/
+    const key = '73434147476c686a39396f6a59474d'
+    const lists = document.querySelector('.item')
+    const number_list = document.querySelector('.number-list')
+    const back = document.querySelector('#back')
+    const front = document.querySelector('#front')
+    let bigPage = 1
+    let pagenumber = document.querySelector('.number')
+
+    const loadingBar = document.querySelector('.loading-bar'); // 로딩바 요소를 선택합니다.
+
+    function showLoadingBar() {
+            loadingBar.style.display = 'block'; // 로딩바를 보이게 합니다.
+        }
+
+    function hideLoadingBar() {
+            loadingBar.style.display = 'none'; // 로딩바를 숨깁니다.
+       }
+
+    paging(bigPage)
+
+    function paging(bigPage){
+        lists.replaceChildren()
+            let start = 10 *(bigPage-1) + 1
+            let end = 10 * (bigPage) + 1
+        url = `http://openapi.seoul.go.kr:8088/${key}/json/SeoulPublicLibraryInfo/${start}/${end}`
+        showLoadingBar(); // API 호출 전에 로딩바를 표시합니다.
+
+        fetch(url)
+        .then((response)=>{
+            return response.json()
+        })
+        .then((data)=>{
+            for (i=0;i<data.SeoulPublicLibraryInfo.row.length;i++){
+                let list = document.createElement('div')
+                let smalllibrary = document.createElement('div')
+                let accordion_content = document.createElement('div')
+                let type = data.SeoulPublicLibraryInfo.row[i]['LBRRY_SE_NAME']
+                let name = data.SeoulPublicLibraryInfo.row[i]['LBRRY_NAME']
+                let address = data.SeoulPublicLibraryInfo.row[i]['ADRES']
+                let tel = data.SeoulPublicLibraryInfo.row[i]['TEL_NO']
+                let url = data.SeoulPublicLibraryInfo.row[i]['HMPG_URL']
+                let time = data.SeoulPublicLibraryInfo.row[i]['OP_TIME']
+                let holiday = data.SeoulPublicLibraryInfo.row[i]['FDRM_CLOSE_DATE']
+                const x = data.SeoulPublicLibraryInfo.row[i]['XCNTS']
+                const y = data.SeoulPublicLibraryInfo.row[i]['YDNTS']
+                smalllibrary.innerHTML+=` 
+                <p style="margin-bottom:1px">${type}</p>
+                <h3 style="margin-bottom:1px">${name}</h3>
+                <p style="margin-bottom:1px">${address}</p>
+                `
+                accordion_content.innerHTML+=` 
+                <p style="margin-bottom:1px">도서관 전화번호 : ${tel}</p>
+                <p style="margin-bottom:1px"><a href ='${url}'>홈페이지 url : ${url}</a></h4>
+                <p style="margin-bottom:1px">운영시간 : ${time}</p>
+                <p style="margin-bottom:1px">${holiday}</p>
+                <div class="map-container" style="margin-top:10px">
+                    <div class="map-container">
+                        <div id="map${i}" style="width: 100%; height: 300px"></div>
+                    </div>
+                </div>
+                `
+                list.classList.add('library')
+                smalllibrary.classList.add('smalllibrary')
+                accordion_content.classList.add('accordion-content')
+                list.appendChild(smalllibrary)
+                list.appendChild(accordion_content)
+                lists.appendChild(list)
+                let maps = document.querySelector(`#map${i}`)
+                let map = initializeMap(maps,x,y)
+            }
+            pagenumber.innerText = bigPage
+            checking(data.SeoulPublicLibraryInfo.row.length)
+            hideLoadingBar(); // 데이터가 로드된 후 로딩바를 숨깁니다.
+        })
+    }
+
+    function initializeMap(map, lat, lng) {
+    // var container = document.getElementById(containerId);
+    // 지도를 생성할 때 사용할 옵션
+    var mapOptions = {
+        center: new kakao.maps.LatLng(lat, lng), //지도의 중심좌표.
+        level: 3 //지도의 레벨(확대, 축소 정도)
+    };
+    
+    var map = new kakao.maps.Map(map, mapOptions);
+        
+    var zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+    // 마커 이미지 설정
+    var imageSrc = "https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons/location-red.svg",
+        imageSize = new kakao.maps.Size(64, 69),
+        imageOption = { offset: new kakao.maps.Point(27, 69) };
+    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    
+    // 지도 객체 생성
+    var maps = [];
+    var geocoder = new kakao.maps.services.Geocoder();
+
+    var containers = document.querySelectorAll('.map-container > div[id^="map"]');
+    containers.forEach(function(container) {
+        
+    
+        // 지도 이벤트 추가
+        // kakao.maps.event.addListener(map, "idle", function () {
+        // searchAddrFromCoords(map.getCenter(), displayCenterInfo);
+        // });
+    
+        // 마커 추가
+        var markerPosition = map.getCenter(); // 마커가 표시될 위치를 지도의 중심으로 설정합니다.
+        var marker = new kakao.maps.Marker({
+            position: markerPosition,
+            image: markerImage
+        });
+        marker.setMap(map);
+
+    
+        // maps.push(map); // 생성된 지도를 배열에 추가
+    });
+    
+    // 주소 검색 후 지도 중심을 변경하는 예제 함수
+    function searchAddrFromCoords(coords, callback) {
+        // 좌표로 행정동 주소 정보를 요청합니다
+        geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);
+    }
+    
+    function searchDetailAddrFromCoords(coords, callback) {
+        // 좌표로 법정동 상세 주소 정보를 요청합니다
+        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+    }
+    
+    // 특정 주소에 마커 표시
+    function addMarkerAtAddress(address) {
+        geocoder.addressSearch(address, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+            maps.forEach(function(map) {
+            var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords,
+                image: markerImage
+            });
+            });
+        }
+        });
+    }
+    
+    // 주소 정보를 바탕으로 각 지도에 마커를 추가합니다.
+    addMarkerAtAddress("갈현로 21길");
+}
+
+    function checking(row){
+            if(bigPage == 1){
+                back.style.visibility='hidden'
+            }else{
+                back.style.visibility='visible'
+            }
+            if(row<=10){
+                front.style.visibility = 'hidden'
+            }else{
+                front.style.visibility = 'visible'
+            }
+        }
+
+
+
+    function page_plus(){
+        bigPage+= 1
+        paging(bigPage)
+        }
+
+    function page_minus(){
+        if (bigPage>1){
+            bigPage -= 1
+            paging(bigPage)
+            }
+        }
+
+
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+
+
+</html>

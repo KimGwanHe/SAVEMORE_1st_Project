@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 일자리카페 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+    <!-- <script src="./map.js"></script> -->
+    <script
+    type="text/javascript"
+    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=291c0031d5303797fc6e590328265969&libraries=services"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <script src="./google-apps-script.js"></script> -->
+
+    <style>  /* 앱 화면을 기준으로 개발 */
+        body{
+            min-width: 375px;
+            height: 100%;
+        }
+        #fullpage{
+            padding-bottom: 40px;
+            height: 100%;
+        }
+
+        #wrapper {
+            height: 100%;
+        }
+
+
+        .container_amenity_jobcafe__slidelist {
+            margin: 0 auto;
+            /* min-width: 375px; */
+            width : 90%;
+            height: 100%;
+            background-color: white;  /*색 골라야함*/
+            border-radius: 10px;
+            /* margin-bottom: 30px; */
+        }
+
+        .amjobcafeslidetoptext {
+            text-align: center;
+        }
+
+        .amjobcafeslidetitle > h3 {
+            clear: both;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            padding-top: 10px;
+            margin-bottom: 3dvh;
+        }
+
+        .amjobcafeslidetext {
+            text-align: center;
+            padding: 20px;
+            padding-bottom: 0;
+            font-size: 15px;
+            margin-bottom: 20px;
+            color: #5271FF;
+        }
+
+        .amenity_jobcafe__slidelist {
+            display: block;
+            justify-content: center;
+            flex: 0 0 40%;;
+            margin: 0 auto;
+            font-size: 10px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid rgb(141, 136, 136);
+            border-radius: 10px;
+            box-shadow: 0 0 3px rgba(15, 15, 16, 0.5);
+            width: 90%;
+            padding-bottom: 10px;
+        }
+
+        .smallamjobcafeslide {
+            margin-left: 7px;
+        }
+
+        .toggle-button {
+            margin-top: 10px;
+            font-size: 10px;
+            cursor: pointer;
+            width: 98%;
+            margin-right: 7px;
+            background-color: #d4d5db;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .amjobcafeslideaccordion-content {
+            /* display: none; */
+            padding: 3%;
+        }
+
+        .map-container {
+            width: 100%;
+            margin: 0 auto;
+            border: 0.5px solid black;
+        }
+
+        .map-container > #map {
+            width: 100%;
+        }
+
+        #number-list{
+            width: 80%;
+            height: 70px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* #number-list>div>div{
+            text-align: center;
+            border: none;
+        }
+
+        .number-list>div{
+            height: 50px;
+        } */
+        .number-lists{
+            /* height: 50px; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 50%;
+        }
+        .number-list{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30%;
+            list-style: none;
+            padding: 0;
+        }
+        #number-list>div>div>div:hover{
+            cursor: pointer;
+            color: blue;
+            font-weight: bold;
+        }
+        div.move{
+            line-height: 3;
+        }
+        div.move:hover{
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .toggle-btn{
+            background-color: white;
+            padding: 5px;
+            color: blue;
+            border-radius: 10px;
+            width: 100%;
+            border: 1px solid black;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #hidden > p{
+            margin-bottom: 2px;
+            padding-bottom: 2px;
+            font-weight: bold;
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+         @media screen and (min-width: 768px) {
+            #fullpage {
+            /* background-color: yellow; */
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 100px;
+            height: 800px;
+        }
+        
+        .container_amenity_jobcafe__slidelist{
+            width: 100%;
+            max-width: 600px;
+            background-color: white;
+            margin:0 auto;
+            height: auto;
+        }
+        .amjobcafeslidetitle > h3 {
+            font-size: 25px;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+        .amjobcafeslidetext {
+            font-size: 20px;
+        }
+
+
+        .map-container {
+            width: 100%;
+        }
+
+        .map-container > #map {
+            width: 100%;
+            height: 500px;
+        }
+    
+    }    
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'" class="btn_login">로그인</button></div>
+                            </li>
+
+                            <li class="page1"><a href="facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <div class="amjobcafeslidetitle">
+                <h3>편의시설</h3>
+            </div>
+            <div class="container_amenity_jobcafe__slidelist">
+                <div class="amjobcafeslidetext"><h4 class="amjobcafeslidetoptext">일자리카페 안내</h4></div>
+                <div class="loading-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <h2>loading ...</h2>
+                </div>
+                <div class="item">
+                    <div class="amenity_jobcafe__slidelist">
+                        <div class="smallamjobcafeslide">
+                            <p>일자리 카페</p><br>
+                            <h4>강동일자리카페</h4><br>
+                            <p>서울특별시 강동구 올림픽로 797</p>
+                            <p>강동구</p>
+                            <p>4층 강동일자리카페</p>
+                            <button class="toggle-button">▼</button>
+                        </div>
+                        <div class="amjobcafeslideaccordion-content">
+                            <p>청년 지역특화공간 강동일자리카페입니다.</p>
+                            <p>월~토 09:00~18:00</p>
+                            <p>일요일 공휴일</p>
+                            <p>스터디룸 사용 가능합니다(예약필!)</p>
+                            <p>※ 강동일자리카페 문의: 02-3427-1067~9</p>
+                            <p>운영시간: 월~ 토 09:00~18:00</p>
+                            <p>강동일자리카페 스터디룸 이용방법 : 서울일자리포털 또는 모바일앱 예약</p>
+                            <p>교육공간(30석 규모) / 스터디룸(6인용 그룹스터디룸 2개 보유) - 코로나19 지침변동에 따라 사용인원 유동 적용 : 현재 최대예약인원 4 인</p>
+                            <p>전체 대관 행사가 진행될 경우 예약이 제한 될 수 있으며 행사 진행 시 소음이 발생할수 있으므로 양해 바랍니다.</p>
+                            <p>주차공간 없음/ 공용 컴퓨터(노트북)없음/ 프린트 사용 가능</p>
+                            <p>외부 음료 음식물 반입 및 섭취 금지입니다.</p>
+                            <p>취업관련 청년활동(취업스터디 면접준비 해당주제관련모임)에 한해서만 이용이 가능합니다.</p>
+                            <p>예약을 통해서만 이용이 가능합니다.</p>
+                            <p>좋은 공간을 많은 사람들이 공유하자는 취지에서 1팀 1일 최대 3시간 예약 가능합니다.</p>
+                            <p>예약은 주 1회 3시간만 가능합니다. (팀원이름 바꿔 연속예약 불가/예약인원 필수 참석 수시 출석체크)</p>
+                            <p>스터디룸 예약시 연락처 이용목적 사용인원  성명 전부 :  필수 기재바랍니다.</p>
+                            <p>스터디룸 이용은 최소 2인 이상 예약 가능합니다.(1인 안됨)</p>
+                            <p>이용 목적을 기재하지 않을 경우 예약 취소가 될 수 있으며 이용목적에 맞지 않을 경우 사용승인 취소될 수 있음을 양해 바랍니다.</p>
+                            <p>예약 후 참석하지 않으실 경우 스터디룸 사용이 취소되며 추후 스터디룸 사용에 제한을 받을 수 있으니 꼭 주의 해 주시기 바랍니다.</p>
+                            <p>AI면접체험룸 이용자는 본인 이어폰 지참 필수.</p>
+                            <div class="map-container">
+                                <div id="map" style="width: 100%; height: 300px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="library-list"></div>
+                    <div id="number-list">
+                        <div class="number-lists">
+                            <div onclick="page_minus()" class="move" id="back">&lt;</div>
+                            <div class="number"></div>
+                            <div onclick="page_plus()" class="move" id="front">&gt;</div>
+                        </div>
+                    </div>  
+            </div>
+        </div>
+
+<!-- 상세보기 팝업창 -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn">&times;</span>
+        <div id="popup-inner-content"></div>
+    </div>
+</div>
+
+<!-- 팝업창 CSS -->
+<style>
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .popup-content {
+        background-color: #fefefe;
+        margin-top: 135px;
+        margin-left: 18.5px;
+        margin-right: 25px;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+    
+    .close-btn {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close-btn:hover,
+    .close-btn:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+</body>
+
+<script>
+    //http://openapi.seoul.go.kr:8088/(인증키)/xml/jobCafeOpenInfo/1/5/
+    const key = '73434147476c686a39396f6a59474d'
+    const lists = document.querySelector('.item')
+    const number_list = document.querySelector('.number-list')
+    const back = document.querySelector('#back')
+    const front = document.querySelector('#front')
+    let bigPage = 1
+    let pagenumber = document.querySelector('.number')
+
+    const loadingBar = document.querySelector('.loading-bar'); // 로딩바 요소를 선택합니다.
+
+
+    paging(1)
+
+    function showLoadingBar() {
+            loadingBar.style.display = 'block'; // 로딩바를 보이게 합니다.
+        }
+
+    function hideLoadingBar() {
+            loadingBar.style.display = 'none'; // 로딩바를 숨깁니다.
+       }
+
+    function paging(bigPage){
+        lists.replaceChildren()
+            let start = 10 *(bigPage-1) + 1
+            let end = 10 * (bigPage) + 1
+        url = `http://openapi.seoul.go.kr:8088/${key}/json/jobCafeOpenInfo/${start}/${end}`
+        showLoadingBar(); // API 호출 전에 로딩바를 표시합니다.
+
+        fetch(url)
+        .then((response)=>{
+            return response.json()
+        })
+        .then((data)=>{
+            console.log(data)
+            for (i=0;i<data.jobCafeOpenInfo.row.length;i++){
+                let list = document.createElement('div')
+                let smalllibrary = document.createElement('div')
+                let accordion_content = document.createElement('div')
+                let type = data.jobCafeOpenInfo.row[i]['CAFE_TYPE_NM']
+                let name = data.jobCafeOpenInfo.row[i]['CAFE_NM']
+                let address1 = data.jobCafeOpenInfo.row[i]['BASS_ADRES_CN']
+                let gu = data.jobCafeOpenInfo.row[i]['GUGUN']
+                let holiday = data.jobCafeOpenInfo.row[i]['HOLI_DD']
+                let address2 = data.jobCafeOpenInfo.row[i]['ROAD_ADRES2_CN']
+                let time = data.jobCafeOpenInfo.row[i]['USE_DT']
+                //-----------------------------------------------------
+                let intro1 = data.jobCafeOpenInfo.row[i]['SMPL_INTRO']|| ""
+                let intro2 = data.jobCafeOpenInfo.row[i]['SPACE_INFRO']|| ""
+                let fac1 = data.jobCafeOpenInfo.row[i]['FACLT_INFO1']|| ""
+                let fac2 = data.jobCafeOpenInfo.row[i]['FACLT_INFO2']|| ""
+                let fac3 = data.jobCafeOpenInfo.row[i]['FACLT_INFO3']|| ""
+                let fac4 = data.jobCafeOpenInfo.row[i]['FACLT_INFO4']|| ""
+                let fac5 = data.jobCafeOpenInfo.row[i]['FACLT_INFO5']|| ""
+                let fac6 = data.jobCafeOpenInfo.row[i]['FACLT_INFO6']|| ""
+                let fac7 = data.jobCafeOpenInfo.row[i]['FACLT_INFO7']|| ""
+                let fac8 = data.jobCafeOpenInfo.row[i]['FACLT_INFO8']|| ""
+                let fac9 = data.jobCafeOpenInfo.row[i]['FACLT_INFO9']|| ""
+                let fac10 = data.jobCafeOpenInfo.row[i]['FACLT_INF10']|| ""
+                let res1 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST1']|| ""
+                let res2 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST2']|| ""
+                let res3 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST3']|| ""
+                let res4 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST4']|| ""
+                let res5 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST5']|| ""
+                let res6 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST6']|| ""
+                let res7 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST7']|| ""
+                let res8 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST8']|| ""
+                let res9 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST9']|| ""
+                let res10 = data.jobCafeOpenInfo.row[i]['RSRV_SGGST01']|| ""
+                pagenumber.innerText = bigPage
+                smalllibrary.innerHTML+=` 
+                <p style="margin-bottom:1px">${type}</p>
+                <h3 style="margin-bottom:1px">${name}</h3>
+                <p style="margin-bottom:1px">${address1}</p>
+                <p style="margin-bottom:1px">${address2}</p>
+                <p style="margin-bottom:1px">휴일 : ${holiday}</p>
+                <p style="margin-bottom:1px">${time}</p>
+                `
+                const toggle = document.createElement('button')
+                toggle.className = "toggle-btn"
+                toggle.innerText = "상세 사항 더보기"
+                toggle.onclick = function(){
+                    const popup = document.getElementById("popup");
+                    const popupInnerContent = document.getElementById("popup-inner-content");
+                    popupInnerContent.innerHTML = `
+                        <p style="margin-bottom:1px">${intro1}</p>
+                        <p style="margin-bottom:1px">${intro2}</p>
+                        <p style="margin-bottom:1px">${fac1}</p>
+                        <p style="margin-bottom:1px">${fac2}</p>
+                        <p style="margin-bottom:1px">${fac3}</p>
+                        <p style="margin-bottom:1px">${fac4}</p>
+                        <p style="margin-bottom:1px">${fac5}</p>
+                        <p style="margin-bottom:1px">${fac6}</p>
+                        <p style="margin-bottom:1px">${fac7}</p>
+                        <p style="margin-bottom:1px">${fac8}</p>
+                        <p style="margin-bottom:1px">${fac9}</p>
+                        <p style="margin-bottom:1px">${fac10}</p>
+                        <p style="margin-bottom:1px">${res1}</p>
+                        <p style="margin-bottom:1px">${res2}</p>
+                        <p style="margin-bottom:1px">${res3}</p>
+                        <p style="margin-bottom:1px">${res4}</p>
+                        <p style="margin-bottom:1px">${res5}</p>
+                        <p style="margin-bottom:1px">${res6}</p>
+                        <p style="margin-bottom:1px">${res7}</p>
+                        <p style="margin-bottom:1px">${res8}</p>
+                        <p style="margin-bottom:1px">${res9}</p>
+                        <p style="margin-bottom:10px">${res10}</p>
+                    `;
+                    popup.style.display = "block";
+                }
+
+                accordion_content.innerHTML+=` 
+                <div class="map-container">
+                    <div id="map${i}" style="width: 100%; height: 300px"></div>
+                </div>
+                `
+                list.classList.add('amenity_jobcafe__slidelist')
+                smalllibrary.classList.add('smallamjobcafeslide')
+                accordion_content.classList.add('amjobcafeslideaccordion-content')
+                list.appendChild(smalllibrary)
+                list.appendChild(toggle)
+                list.appendChild(accordion_content)
+                lists.appendChild(list)
+                let maps = document.querySelector(`#map${i}`)
+                let map = initializeMap(maps,address1)
+                console.log(map)
+            }
+            checking(data.jobCafeOpenInfo.row.length)
+            hideLoadingBar(); // 데이터가 로드된 후 로딩바를 숨깁니다.
+
+        })
+    }
+
+   ////////////////////////////////////////////////////////////////
+
+    // 팝업창 제어
+    document.querySelector('.close-btn').onclick = function() {
+    document.getElementById('popup').style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        const popup = document.getElementById('popup');
+        if (event.target == popup) {
+            popup.style.display = "none";
+        }
+    }
+
+   ////////////////////////////////////////////////////////////////
+    function initializeMap(map,address1) {
+        var mapOptions = {
+            center: new kakao.maps.LatLng(37.517223386,127.041292852), //지도의 중심좌표.
+            level: 3 //지도의 레벨(확대, 축소 정도)
+        };
+    
+        var map = new kakao.maps.Map(map, mapOptions);
+    // 마커 이미지 설정
+        var imageSrc = "https://dau2wmhjxkxtx.cloudfront.net/web-static/static_webapp_v2/img/icons/location-red.svg",
+            imageSize = new kakao.maps.Size(64, 69),
+            imageOption = { offset: new kakao.maps.Point(27, 69) };
+    
+        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+        var geocoder = new kakao.maps.services.Geocoder();
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch(address1,
+            // 받아온 식당주소 입력
+            function (result, status) {
+            // 정상적으로 검색이 완료됐으면
+            if (status === kakao.maps.services.Status.OK) {
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new kakao.maps.Marker({
+                map: map,
+                position: coords,
+                image: markerImage,
+                });
+                map.setCenter(coords);
+            }
+        });
+    }
+
+    function checking(row){
+            if(bigPage == 1){
+                back.style.visibility='hidden'
+            }else{
+                back.style.visibility='visible'
+            }
+            if(row<=10){
+                front.style.visibility = 'hidden'
+            }else{
+                front.style.visibility = 'visible'
+            }
+        }
+
+
+
+    function page_plus(){
+        bigPage+= 1
+        paging(bigPage)
+        }
+
+    function page_minus(){
+        if (bigPage>1){
+            bigPage -= 1
+            paging(bigPage)
+            }
+        }
+
+
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+</html>

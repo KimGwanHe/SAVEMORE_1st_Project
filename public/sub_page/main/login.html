@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 로그인 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="./google-apps-script.js"></script>
+    
+    
+
+    <style>
+        @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+        #wrapper {
+            background-color: #A3DEF2;
+        }
+        body {
+            min-width: 375px;
+            background-color: #A3DEF2;
+        }
+        #fullpage {
+            /* background-color: yellow; */
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 100px;
+            height: 800px;
+        }
+
+        .container_log {
+            width: 60%;
+            max-width: 600px;
+            background-color: #A3DEF2;
+            padding: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+            /* border-radius: 10px; */
+            margin: 70px auto;
+            height: auto;
+        }
+
+        .logo img {
+            max-width: 400px;
+            display: block;
+            width: 60%;
+            height: auto;
+            margin: 40px auto;
+            cursor: pointer;
+        }
+
+        .container_log form{
+            padding-top: 20px;
+            height: 300px;
+            /* background-color: aqua; */
+        }
+        .container_log .userid, .userpw {
+            margin-bottom: 25px;
+        }
+        
+
+        .container_log input {
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding: 15px 10px;
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+            border: 2px solid #ccc;
+            outline: none;
+        }
+
+        .container_log .log_btn {
+            background-color: #5271FF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 80%;
+            box-sizing: border-box;
+            padding: 15px 15px;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+
+        .container_log .log_btn:hover {
+            background-color: #ffffff ; /* 버튼 호버 효과 */
+            color:#5271FF;
+            font-weight: 800;
+        }
+
+        .signup-link {
+            font-size: 1em;
+            margin-top: 20px;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        .signup-link a {
+            color: #001fa8;
+        }
+        .signup-link a:hover {
+            color: #5271FF;
+        }
+        .signup-link div{
+            margin-left: 10px;
+            float: left;
+        }
+
+
+
+
+        @media screen and (max-width:600px) {
+
+            #fullpage{
+                height: 600px;
+            }
+            
+            .container_log {
+                width : 90%;
+                margin: 40px auto;
+                height: auto;
+            }
+            .container_log form{
+                padding-top: 5px;
+                height: 230px;
+                /* background-color: aqua; */
+            }
+            .container_log .userid, .userpw {
+                margin-bottom: 15px;
+            }
+            input {
+            border-radius: 5px;
+            height: 35px;
+            }
+
+            .container_log .log_btn {
+                padding: 10px 15px;
+
+            }
+            /* footer{
+                    display: none;
+            } */
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='#'" class="btn_login">로그인</button></div>
+                            </li>
+                            <li class="page1"><a href="../facility/facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+       
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+                var mBtn = $(".smallmenu");
+                var closeBtn = $(".xmenu");
+
+                // 버튼 클릭 이벤트
+                $(mBtn).click(function () {
+                    $("nav").css("right", "0");
+                    $(closeBtn).css("display", "block");
+                });
+
+                // 닫기 버튼 클릭 이벤트
+                $(closeBtn).click(function () {
+                    $("nav").css("right", "-100%");
+                    $(closeBtn).css("display", "none");
+                });
+                // nav 클릭 이벤트
+                $("nav").click(function () {
+                    $("nav").css("right", "-100%");
+                    $(closeBtn).css("display", "none");
+                });
+            });
+        </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+
+        <!--fullpage-->  
+        <div id="fullpage">
+            <!--section1-->
+                <div class="container_log">
+                    <div class="logo">
+                        <img src="../../img/logo1.png" alt="Save More 로고">
+                    </div>
+                    <form action="/user/login" method="post">
+                        <div class="userid">
+                            <input type="id" id="userid" name="userid" placeholder="아이디">
+                        </div>
+                        <div class="userpw">
+                            <input type="password" id="password" name="password" placeholder="비밀번호">
+                        </div>
+                        <button type="submit" class="log_btn" >로그인</button>
+                    <div class="signup-link">
+                        <div>회원이 아니신가요?</div> <div><a href="../member/agree_main.html">회원가입</a></div>
+                    </div>
+                </form>
+                </div>
+        </div>
+</div> 
+</body>
+</html>

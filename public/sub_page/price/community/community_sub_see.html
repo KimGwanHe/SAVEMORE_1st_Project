@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 글보기 </title>
+
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../../css/slick.css">
+    <link rel="stylesheet" href="../../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../../js/jquery.fullPage.js"></script>
+    <script src="../../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="./google-apps-script.js"></script>
+
+    <style>
+        /* 앱 화면을 기준으로 개발 */
+
+        body {
+            min-width: 375px;
+        }
+
+        #fullpage {
+            height: auto;
+        }
+
+        .container_com_sub1 {
+            margin: 0 auto;
+            /*min-width: 375px; */
+            max-width: 800px;
+            width: 90%;
+            height: auto;
+            /* height: 650px; */
+            background-color: white;
+            /*색 골라야함*/
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            margin: 15px auto;
+            font-size: 17px;
+            color: black;
+        }
+
+        .box1 {
+            border: 1px solid darkgray;
+            width: 85%;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: auto;
+        }
+
+        .box1 span {
+            width: 100%;
+            border-bottom: 1px solid darkgray;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box1 .pop1,
+        .pop2 {
+            display: inline-block;
+            padding: 15px 10px 5px;
+            font-size: 11px;
+            font-weight: 100;
+            font-weight: bold;
+        }
+
+        .box1 .pop3 {
+            padding: 20px;
+            font-weight: 200;
+        }
+
+        .img {
+            width: 100%;
+            margin: 5px 0;
+            display: block;
+            height: auto;
+        }
+
+        .box2 {
+            margin: 15px auto;
+            /* border: 1px solid darkgray ; */
+            width: 85%;
+            overflow: auto;
+        }
+        .box2 span {
+            text-align: left;
+            height: 20px;
+            line-height: 20px;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            border-bottom: 1px solid darkgray;
+            padding-bottom: 5px;
+        }
+        .box2 .mini1,
+        .mini2 {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 200;
+            width: 20%;
+        }
+        .box2 .mini3 {
+            width: 20%;
+            font-size: 12px;
+            font-weight: 200;
+            text-align: left;
+        }
+        .box2 img {
+            width: 10px;
+            /* 이미지가 버튼 안에 꽉 차도록 */
+            height: 10px;
+            /* 이미지가 버튼 안에 꽉 차도록 */
+        }
+
+        #btn1 {
+            width: 80%;
+            max-width: 60%;
+            height: 45px;
+            background-color: white;
+            color: #5271ff;
+            font-weight: 600;
+            border-radius: 5px;
+            border: 1px solid white;
+            cursor: pointer;
+            margin: 30px auto;
+            font-size: 16px;
+            display: block;
+            max-width: 800px;
+        }
+
+        #btn1:hover {
+            background-color: #5271FF;
+            /* 버튼 호버 효과 */
+            color: white;
+            font-weight: 800;
+        }
+
+        .comment1 {
+            border-top: 1px solid white;
+            width: 90%;
+            margin: 10px auto;
+        }
+
+        .comment1 h4 {
+            font-weight: 500;
+            margin: 5px 5px;
+        }
+
+        .comment1 p {
+            font-weight: 300;
+            margin: 3px 15px;
+        }
+
+        .comment2,
+        .comment3 {
+            /* background-color: antiquewhite; */
+            width: 90%;
+            margin: 20px auto;
+            border-top: 1px solid darkgray;
+        }
+
+        .comment2 h4,
+        .comment3 h4 {
+            font-weight: 500;
+            margin: 5px 5px;
+        }
+
+        .comment2 p,
+        .comment3 p {
+            font-weight: 300;
+            margin: 3px 15px;
+        }
+
+        .comment4 {
+            box-sizing: border-box;
+            padding: 10px 0;
+            /* border: 1px solid darkgray ; */
+            width: 100%;
+            height: auto;
+            margin: 5px auto;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 100%;
+            border: 1px solid #969696;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            height: 20px;
+            padding: 10px;
+        }
+
+        #btn2 {
+            float: right;
+            margin-top: 10px;
+            width: 40%;
+            padding: 5px;
+            background-color: #5271ff;
+            color: white;
+            transition: all 0.5s ease;
+            border-radius: 4px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        #btn2:hover {
+            background-color: white;
+            color: #5271FF;
+            font-weight: 800;
+        }
+
+        #btn3 {
+            box-sizing: border-box;
+            text-align: center;
+            height: 20px;
+            width: 25%;
+            line-height: 20px;
+            padding: 0 5px;
+            color: #fff;
+            background-color: #999999;
+            border-radius: 3px;
+            font-size: 11px;
+            border: 1px solid #999999;
+            margin-right: 10px;
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+        @media screen and (min-width: 768px) {
+            #fullpage {
+                /* background-color: yellow; */
+                width: 70%;
+                margin: 0 auto;
+                padding-top: 100px;
+                height: auto;
+            }
+
+            .container_lib {
+                width: 60%;
+                max-width: 600px;
+                background-color: white;
+
+                margin: 0 auto;
+                height: 650px;
+            }
+
+            .box1 {
+                height: 500px;
+            }
+
+            h2 {
+                margin: 40px auto;
+                color: white;
+                font-size: 25px;
+            }
+
+            h3 {
+                margin: 10px 30px;
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            .box1 .pop1,
+            .pop2 {
+                font-size: 15px;
+            }
+
+            .box1 .pop3 {
+                font-size: 15px;
+            }
+
+            .box2 .mini1,
+            .mini2 {
+                font-size: 15px;
+                font-weight: 300;
+            }
+
+            .box2 .mini3 {
+                font-size: 15px;
+                font-weight: 300;
+            }
+
+            .box2 .mini4 {
+                font-size: 15px;
+                font-weight: 300;
+            }
+
+            .box2 img {
+                width: 15px;
+                /* 이미지가 버튼 안에 꽉 차도록 */
+                height: 15px;
+                /* 이미지가 버튼 안에 꽉 차도록 */
+            }
+
+            .comment4 {
+                width: 95%;
+            }
+
+            #btn2 {
+                font-size: 13px;
+                width: 22%;
+                margin-top: 20px;
+                padding: 10px;
+            }
+
+            input {
+                width: 100%;
+                height: 130px;
+                font-size: 17px;
+                margin-left: 5px;
+            }
+
+            #btn1 {
+                width: 65%;
+                height: 50px;
+                margin-bottom: 100px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s"
+                        alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button
+                                        onclick="window.location.href='../../member/member_info_change.html'"
+                                        class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../../member/post_mine.html'"
+                                        class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../../main/login.html'"
+                                        class="btn_login">로그인</button>
+                                </div>
+                            </li>
+                            <li class="page1"><a href="../../facility/facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function () {
+                window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+        </script>
+
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <!--수정할 곳 container_(페이지이름)-->
+            <div class="title">
+                <h2>물가정보 커뮤니티</h2>
+            </div>
+            <div class="container_com_sub1">
+                <div class="com_wrap">
+                    <h3>글제목</h3>
+                    <div class="box1"><span>
+                            <div class="pop1">작성자: bbbobob13</div>
+                            <div class="pop2">2024-04-22</div>
+                        </span>
+                        <div class="pop3">글내용
+                            <div class="img_box">
+                                <div class="img 1">img1</div>
+                                <div class="img 2">img2</div>
+                                <div class="img 3">img3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <div class="post1" style="display: none;">
+                            <span>
+                                <div class="mini1"> 조회수?</div>
+                                <!-- <div class="mini2"> 댓글?</div> -->
+                                <div class="mini3" onclick="toggleLike(this)"> 좋아요 <img src="../../../img/like_empty.png"
+                                        alt="빈 따봉" class="like-icon">
+                                </div>
+                                <button onclick="incrementAlert()" id="btn3">신고하기<i
+                                        class="xi-bell"></i></button>
+                        </div>
+                        </span>
+                        <div class="commentContainer">
+                            <div class="comment-list">
+                                <!-- 댓글들이 이 위치에 추가됩니다 -->
+                            </div>
+                            <div class="comment4" id="comments" style="display: none;">
+                                <input type="text" name="comment" id="comment4" placeholder="댓글을 입력해주세요"><button
+                                    id="btn2">확인</button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h5><a href="community_main.html"><button type="main" id="btn1">목록으로</button></a></h5>
+    </div>
+    </div>
+</body>
+<script>
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+    const line = document.querySelector('.post1')
+    const comments = document.querySelector('#comments')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+        line.style.display = 'block'
+        comments.style.display = 'block'
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        console.log(postId)
+        fetch(`/price/community/${postId}`)
+            .then(response => response.json())
+            .then(data => {
+                displayTweet(data)
+            })
+            .catch(error => console.error('Error:', error));
+
+        //글 내용표시하는 함수
+        function displayTweet(tweet) {
+            console.log(tweet)
+            const postTitle = document.querySelector('.com_wrap h3');
+            const author = document.querySelector('.com_wrap .pop1');
+            const date = document.querySelector('.com_wrap .pop2');
+            const content = document.querySelector('.com_wrap .pop3'); 
+            const viewCount = document.querySelector('.mini1');
+            const likeCount = document.querySelector('.mini3');
+            const imageBox = document.querySelector('.img_box');
+
+            postTitle.textContent = tweet.title; // 트윗의 제목을 h3에 삽입
+            author.textContent = `작성자: ${tweet.userid}`; // 작성자 정보를 pop1에 삽입
+            const dateOnly = new Date(tweet.createdAt).toISOString().split('T')[0];
+            date.textContent = dateOnly; // 작성 날짜를 pop2에 삽입
+            content.childNodes[0].textContent = tweet.text; // 트윗 내용을 pop3에 삽입
+
+            // 조회수, 댓글 수, 좋아요 수 업데이트
+            viewCount.textContent = `조회수: ${tweet.num}`;
+            likeCount.innerHTML = `좋아요 <img src="../../../img/like_empty.png" alt="빈 따봉" class="like-icon">`;
+
+            // 이미지 표시
+            imageBox.innerHTML = ''; // 기존 이미지 제거
+
+            if (tweet.img_url1) {
+                const img1 = document.createElement('img');
+                img1.src = tweet.img_url1;
+                img1.alt = 'Image 1';
+                img1.classList.add('img');
+                imageBox.appendChild(img1);
+            }
+
+            if (tweet.img_url2) {
+                const img2 = document.createElement('img');
+                img2.src = tweet.img_url2;
+                img2.alt = 'Image 2';
+                img2.classList.add('img');
+                imageBox.appendChild(img2);
+            }
+
+            if (tweet.img_url3) {
+                const img3 = document.createElement('img');
+                img3.src = tweet.img_url3;
+                img3.alt = 'Image 3';
+                img3.classList.add('img');
+                imageBox.appendChild(img3);
+            }
+    }
+
+
+</script>
+
+<!-- 댓글 -->
+<script>
+document.getElementById('btn2').addEventListener('click', function() {
+  const commentText = document.getElementById('comment4').value;
+  const postId = new URLSearchParams(window.location.search).get('id');
+  const userid = sessionStorage.getItem('userid');
+
+  if (!userid) {
+    alert('로그인이 필요합니다.');
+    return;
+  }
+
+  fetch('/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    },
+    body: JSON.stringify({ userid, text: commentText, postId })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.message) {
+      alert(data.message);
+    } else {
+      alert('댓글이 추가되었습니다.');
+      addCommentToDOM(data); // 새로운 댓글을 DOM에 추가
+      document.getElementById('comment4').value = ''; // 입력 필드 초기화
+    }
+  })
+  .catch(error => console.error('Error:', error));
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const postId = new URLSearchParams(window.location.search).get('id');
+
+  fetch(`/comments/${postId}`, {
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+  })
+  .then(response => response.json())
+  .then(comments => {
+    if (!Array.isArray(comments)) {
+      throw new Error('댓글 데이터가 배열이 아닙니다.');
+    }
+    const commentContainer = document.querySelector('.comment-list');
+    comments.forEach(comment => {
+      const commentDiv = document.createElement('div');
+      commentDiv.classList.add('comment');
+      commentDiv.innerHTML = `
+        <h4 style="margin-top:5px ;margin-bottom:5px;">${comment.nickname} <strong style="float:right">${comment.createdAt.split('T')[0]}</strong></h4>
+        <p style="margin-bottom:5px; margin-bottom:5px;">${comment.text}</p>
+        <hr />
+      `;
+      commentContainer.appendChild(commentDiv);
+    // commentContainer.insertBefore(commentDiv, commentInputBox);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+});
+
+function addCommentToDOM(comment) {
+//   const commentContainer = document.querySelector('.commentContainer');
+//   const commentInputBox = document.querySelector('.comment4');
+//   const commentDiv = document.createElement('div');
+//   commentDiv.classList.add('comment');
+//   commentDiv.innerHTML = `
+//     <h4 style="margin-top:5px; margin-bottom:5px;">${comment.nickname}</h4>
+//     <p style="margin-bottom:5px; margin-bottom:5px;">${comment.text}</p>
+//     <hr />
+//   `;
+//   commentContainer.insertBefore(commentDiv, commentInputBox);
+location.reload();
+}
+
+</script>
+
+<!-- 좋아요 -->
+<script>
+    function toggleLike(element) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        const img = element.querySelector('.like-icon');
+        if (img.src.includes('like_empty.png')) {
+            // 좋아요를 누른 경우
+            img.src = '../../../img/like_full.png';
+            // 서버에 좋아요 상태를 업데이트하는 요청 보내기
+            fetch(`/price/community/like/${postId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => console.error('Error:', error));
+        } else {
+            // 좋아요를 취소한 경우
+            img.src = '../../../img/like_empty.png';
+            // 서버에 좋아요 상태를 업데이트하는 요청 보내기
+            fetch(`/price/community/unlike/${postId}`, { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
+<!-- 신고하기 -->
+<script>
+const urlParams2 = new URLSearchParams(window.location.search);
+const tweetId = urlParams2.get('id');
+console.log(tweetId)
+
+function incrementAlert() {
+    if (tweetId) {
+        fetch(`/price/community/warning/${tweetId}`, {
+            method: 'POST'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Failed to increment alert count: ${response.statusText}`);
+            }
+            // return response.json()
+        })
+        .then(data => {
+            console.log(data)
+            alert('신고가 완료되었습니다.');
+        
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('신고하는 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        });
+    } else {
+        console.error('Tweet ID is missing');
+        alert('트윗 ID가 없습니다. 다시 시도해 주세요.');
+    }
+}
+</script>
+</html>

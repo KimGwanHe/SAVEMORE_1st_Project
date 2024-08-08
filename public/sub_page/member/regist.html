@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 회원가입 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="./google-apps-script.js"></script>
+
+    <style>
+        #fullpage {
+            /* background-color: yellow; */
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 100px;
+            height: 1050px;
+        }
+
+        .container_reg {
+            width: 60%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 10px;
+            /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+            border-radius: 10px;
+            margin: 30px auto;
+            height: auto;
+        }
+
+        .reg_wrap {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: #1e3fd1;
+            margin-top: 20px;
+        }
+
+        h4 {
+            font-size: 15px;
+            font-weight: 200;
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+
+        h4:first-of-type {
+            margin-top: 30px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 5px;
+            border: 1px solid #969696;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+        #toggleCheckbox {
+        display: none; /* 체크박스를 숨깁니다. */
+        }
+  
+        #toggleCheckbox:checked + .hiddenbox {
+            display: block; /* 체크박스가 체크되면 div를 보여줍니다. */
+        }
+  
+        /* .hiddenbox {
+            display: none;
+        } */
+        .check {
+            margin-left: 10px;
+            width: 35%;
+            padding: 9px 10px;
+            background-color: #5271ff;
+            color: white;
+            transition: all 0.5s ease;
+            border-radius: 4px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        #btn1,#btn2 {
+            margin-left: 10px;
+            width: 35%;
+            padding: 9px 10px;
+            background-color: #5271ff;
+            color: white;
+            transition: all 0.5s ease;
+            border-radius: 4px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        #btn2-1 {
+            display: inline-block;
+            text-align: center;
+            margin-left: 10px;
+            width: 35%;
+            padding: 9px 10px;
+            background-color: #5271ff;
+            color: white;
+            transition: all 0.5s ease;
+            border-radius: 4px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        
+        #btn2-2 {
+            margin-left: 15px;
+            width: 35%;
+            padding: 9px 10px;
+            background-color: #5271ff;
+            color: white;
+            transition: all 0.5s ease;
+            border-radius: 4px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        #btn1:hover ,
+        #btn2-1:hover,
+        #btn2-2:hover  {
+            background-color: #ffffff ; /* 버튼 호버 효과 */
+            color:#5271FF;
+            font-weight: 800;           
+        } 
+
+        select {
+            width: 100%;
+            padding: 10px 5px;
+            border: 1px solid #969696;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        #nickname,
+        #userid,
+        #hp,
+        #hp_check
+        {
+            width: 58%;
+            outline: none;
+        }
+        
+        #hp,
+        #hp_check
+        {        
+            margin-top: 10px;
+
+        }
+        #ssn1,
+        #ssn2 {
+            margin-left: 5px;
+            width: 45%;
+            outline: none;
+        }
+
+        .box1,
+        .box2 {
+            display: inline-block;
+            width: 46%;
+            font-size: 14px;
+            font-weight: 200;
+        }
+
+        .box1 {
+            margin-right: 20px;
+        }
+
+        #btn3 {
+            width: 100%;
+            height: 45px;
+            background-color: #5271ff;
+            color: white;
+            font-weight: 600;
+            border-radius: 5px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            margin-top: 25px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.5s ease;
+        }
+
+        #btn3:hover{
+            background-color: #ffffff ; /* 버튼 호버 효과 */
+            color:#5271FF;
+            font-weight: 800;           
+        }
+
+        @media screen and (max-width:600px) {
+            #fullpage{
+                height: 850px;
+            }
+            
+            .container_reg {
+                width: 90%;
+                height: 750px;
+            }
+            input {
+            padding: 5px 5px;
+        }
+
+        h4 {
+            font-size: 12px;
+        }
+        
+        p{
+            font-size: 12px;
+        }
+        #ssn1,
+        #ssn2 {
+            width: 45%;
+        }     
+        #btn1{
+            font-size: 12px;
+            padding: 7px 10px;
+        }      
+        #btn2-1,
+        #btn2-2{
+            font-size: 12px;
+            padding: 7px 10px;
+            width: 30%;
+        }
+        .box1,
+        .box2 {
+            width: 45%;
+            font-size: 12px;
+            font-weight: 200;
+        }
+
+        .box1 {
+            margin-right: 20px;
+        }
+        
+        #nickname,
+        #hp
+        #hp_check {
+            font-size: 12px;
+        }
+        
+        select {
+            width: 100%;
+            padding: 5px 5px;
+            border: 1px solid #969696;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        #btn3 {
+            height: 35px;
+            font-size: 14px;
+        }
+
+        footer {
+            display: none;
+        }
+
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="btn_warp">
+                                    <button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'" class="btn_login">로그인</button>
+                                </div>
+                            </li>
+                            <li class="page1"><a href="../facility/facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <!--section1-->
+            <div class="container_reg">
+                <div class="reg_wrap">
+                    <form action="/user/signup" method="post" id="regform" name="regform" onsubmit="return sendit()">
+                        <h2>회원가입</h2>
+                        <h4>이름</h4>
+                        <input type="text" id="name" name="name" placeholder="이름을 입력해주세요">
+                        <h4>아이디</h4>
+                        <input type="text" id="userid" name="userid" placeholder="아이디를 입력해주세요">
+                        <button id="btn1" onclick="authname(document.getElementById('userid').value)" type="button">중복확인</button>
+                        <h4>비밀번호</h4>
+                        <input type="password" id="userpw" name="password" placeholder="비밀번호를 입력해주세요">
+                        <h4>비밀번호 재확인</h4>
+                        <input type="password" id="re_userpw" placeholder="비밀번호를 한번더 입력해주세요">
+                        <h4>닉네임</h4>
+                        <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요">
+                        <button id="btn2" onclick="authnick(document.getElementById('nickname').value)" type="button">중복확인</button>
+                        <!-- <h4>본인 확인 이메일</h4>
+                        <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요"> -->
+                        <h4>주민등록번호</h4>
+                        <input type="text" id="ssn1" name="ssn1" maxlength="6" placeholder="6자리 모두 입력">
+                        <span>-</span>
+                        <input type="text" id="ssn2" name="ssn2" maxlength="1" placeholder="1번째 자리만 입력">
+
+                        <!-- <h4>생년월일</h4>
+                        <div id="dateForm">
+                            <input type="date" id="birth">
+                        </div>  -->
+                        <div class="box1">
+                            <p>성별</p>
+                            <select name="gender" id="gender">
+                                <option value="male">남자</option>
+                                <option value="female">여자</option>
+                            </select>
+                        </div>
+                        <div class="box2">
+                            <p>소득분위</p>
+                            <select name="income" id="income">
+                                <option value="1">1분위</option>
+                                <option value="2">2분위</option>
+                                <option value="3">3분위</option>
+                                <option value="4">4분위</option>
+                                <option value="5">5분위</option>
+                                <option value="6">6분위</option>
+                                <option value="7">7분위</option>
+                                <option value="8">8분위</option>
+                                <option value="9">9분위</option>
+                            </select>
+                        </div>
+                        <div id="phoneForm">
+                            <p>휴대폰 번호</p>
+                            <input type="text" name="hp" id="hp" name="hp" placeholder="휴대폰 번호를 입력해주세요">
+                            
+                            <label for="toggleCheckbox" id="btn2-1" onclick="authhp()"> 인증하기</label>
+                            <input type="checkbox" id="toggleCheckbox">    
+                            <div id="phoneckeck">
+                                <div class="hiddenbox">
+                                    <input type="text" id="hp_check" name="hp_ckeck" placeholder="인증번호 4자리">
+                                    <button id="btn2-2" onclick="auth()" type="button">확인</button>
+                                </div>
+                            </div>
+                        </div>
+                        <h5><button type="submit" id="btn3">가입하기</button></h5>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+let authtel;
+//인증번호 완료여부
+let authtels = false;
+//닉네임중복확인 여부
+let dulnick = false;
+//이름 중복확인 여부
+let dulid = false;
+
+function checknickname(){
+    //닉네임 중복확인
+const nickname = document.getElementById('nickname')
+}
+
+function checkhp(){
+    // 전화번호 인증
+const hp = document.getElementById('hp')
+}
+
+//인증번호 생성후 전송
+
+function authnick(nick){
+    console.log(nick)
+    if(nick !== ''){
+    fetch(`/user/dul_nick/${nick}`)
+    .then(response=> {
+        console.log(response.status)
+        if(response.status == 201){
+            dulnick = false
+            alert('동일한 닉네임이 이미 존재합니다')
+        }
+        else{
+            dulnick = true
+            alert('사용가능한 닉네임입니다')}
+        }
+    )
+}else{
+    alert('닉네임을 입력해주세요')
+}}
+
+function authname(userid){
+    if(userid !== ''){
+    fetch(`/user/dul_id/${userid}`)
+    .then(response=> {
+        if(response.status == 201){
+            dulid = false
+            alert('동일한 아이디가 이미 존재합니다')
+        }
+        else{
+            dulid = true
+            alert('사용가능한 아이디입니다')}
+        }
+    )
+}else{
+    alert('닉네임을 입력해주세요')
+}}
+
+function authhps(){
+    let authNumbers ='';
+    for(let i=0;i<4;i++){
+                let num = Math.floor(Math.random()*10).toString()
+                authNumbers += num}
+    return authNumbers;
+            }
+
+
+
+function authhp(){
+    let num = authhps()
+    const hp = document.getElementById('hp').value
+    console.log(hp)
+    console.log(num)
+    fetch(`/user/number/${num}/${hp}`)
+        .then(response => {
+        console.log('인증번호 전송완료.');
+        alert('인증번호 전송완료')
+        })
+    authtel = num
+}
+
+function auth(){
+    const hp_check = document.getElementById('hp_check')
+    if(hp_check.value == authtel){
+        authtels = true;
+        alert('휴대전화번호 인증이 완료되었습니다')
+    }else{
+        authtels = false;
+        alert('인증번호와 입력내용이 일치하지 않습니다.')
+    }
+}
+
+function sendit(){
+    const name = document.getElementById('name')
+    const userid = document.getElementById('userid')
+    const userpw = document.getElementById('userpw')
+    const re_userpw = document.getElementById('re_userpw')
+    const nickname = document.getElementById('nickname')
+    // const email = document.getElementById('email')
+    const ssn1 = document.getElementById('ssn1');
+    const ssn2 = document.getElementById('ssn2');
+    // const year = document.getElementById('year');
+    const hp = document.getElementById('hp')
+    const hp_check = document.getElementById('hp_check')
+
+    const expNameText = /^[가-힣]+$/;
+    const expIdText = /^[A-Za-z0-9]{4,20}$/;
+    const expPwText = /^(?=.*[A-Za-z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{2,20}$/;
+    // const expEmailText = /^[A-Za-z0-9\-\.\_]+@[A-Za-z0-9\-]+\.[A-Za-z]+$/;
+    const expSsn1Text = /^[0-9]+$/;
+    const expSsn2Text = /^[0-9]+$/;
+    const expNicknameText = /^[가-힣A-Za-z0-9]{2,10}$/;
+    const expHpText = /^\d{3}\d{3,4}\d{4}$/;
+    
+    
+    if(!expNameText.test(name.value)){
+        alert('이름형식이 다릅니다.');
+        name.focus();
+        return false;
+    }
+
+    if(!expIdText.test(userid.value)){
+        alert('아이디는 4자이상 20자 이하로 입력하세요');
+        userid.focus();
+        return false;
+    }
+
+
+    if(!expPwText.test(userpw.value)){
+        alert('비밀번호는 4자이상 20자이하의 영문자, 숫자, 특수문자를 1자이상 꼭 포함해야합니다.');
+        userpw.focus();
+        return false;
+    }
+
+    if(userpw.value != re_userpw.value){
+        alert('비밀번호와 비밀번호 재확인이 일치하지 않습니다.');
+        re_userpw.focus();
+        return false;
+    }
+
+    if(!expNicknameText.test(nickname.value)){
+        alert('닉네임을 2글자이상 10글자 이하로 입력해주세요.');
+        nickname.focus();
+        return false;
+    }
+
+    if(!dulnick){
+        alert('닉네임인증을 완료해주세요')
+        nickname.focus();
+        return false;
+    }
+
+    if(!dulid){
+        alert('아이디인증을 완료해주세요')
+        userid.focus();
+        return false;
+    }
+
+    if(!expSsn1Text.test(ssn1.value)){
+        alert('주민번호 앞자리를 확인해주세요.')
+        ssn1.focus();
+        return false;
+    }
+
+    if(!expSsn2Text.test(ssn2.value)){
+        alert('주민번호 뒷자리를 확인해주세요.')
+        ssn2.focus();
+        return false;
+    }
+
+    if(!expHpText.test(hp.value)){
+        alert('휴대폰 번호 형식이 다릅니다. 예) 010-1234-5678')
+        hp.focus();
+        return false;
+    }
+
+    if(!authtels){
+        alert('전화번호 인증을 완료해주세요')
+        hp_check.focus()
+        return false
+    }
+
+    return true; 
+}
+
+
+
+const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+
+</script>
+</html>

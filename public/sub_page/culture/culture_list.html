@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 문화생활 </title>
+
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- <script src="./google-apps-script.js"></script> -->
+
+    <style>
+        /* 앱 화면을 기준으로 개발 */
+        body {
+            min-width: 375px;
+            height: 100%;
+        }
+
+        #fullpage {
+            padding-bottom: 40px;
+            height: 100%;
+        }
+
+        #wrapper {
+            height: 100%;
+        }
+
+        /* 검색바 */
+        .search-container {
+            float: left;
+            width: 90%;
+            display: block;
+            margin: 10px 5% -100px 5%;
+            border-radius: 5px;
+        }
+
+        input#search-bar {
+            box-sizing: border-box;
+            margin: 0 auto;
+            width: 100%;
+            height: 35px;
+            padding: 0 10px;
+            font-size: 0.8rem;
+            border: 1px solid #a3a3a3;
+            outline: none;
+            border-radius: 10px;
+        }
+
+        .search-icon {
+            position: relative;
+            float: right;
+            width: 60px;
+            height: 60px;
+            top: -47px;
+            right: -8px;
+        }
+
+
+        .container_culture_event_list {
+            margin: 0 auto;
+            /* min-width: 375px; */
+            width: 90%;
+            height: 100%;
+            background-color: white;
+            /*색 골라야함*/
+            border-radius: 10px;
+            /* margin-bottom: 30px; */
+        }
+
+        .toptext {
+            text-align: center;
+        }
+
+        .title>h3 {
+            clear: both;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .eventlisttext {
+            text-align: center;
+            padding: 10px;
+            padding-bottom: 0;
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: #5271FF;
+        }
+
+        .eventlist {
+            margin-top: 30px;
+            display: block;
+            justify-content: center;
+            padding-bottom: 10px;
+        }
+
+        .eventlist>button {
+            flex: 0 0 40%;
+            margin: 0px 3% 5px 5%;
+            margin-top: 7px;
+            font-size: 10px;
+            padding: 10px;
+            background-color: white;
+            border: 1px solid rgb(141, 136, 136);
+            border-radius: 10px;
+            box-shadow: 0 0 3px rgba(15, 15, 16, 0.5);
+            width: 90%;
+        }
+
+        .eventlist>button>p,
+        h4 {
+            text-align: left;
+
+        }
+
+        .eventlist>button:hover {
+            background-color: #5271FF;
+            color: white;
+
+        }
+
+        #event-list {
+            border: none;
+        }
+
+        #culture-list>div {
+            border-bottom: 1px solid black;
+        }
+
+        #number-list {
+            width: 100%;
+            height: 70px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .number-lists {
+            /* height: 50px; */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 190%;
+            padding: auto;
+        }
+
+        .number-list {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20%;
+            list-style: none;
+            padding: 0;
+        }
+
+        #number-list>div>div>div:hover {
+            cursor: pointer;
+            color: blue;
+            font-weight: bold;
+        }
+
+        div.move {
+            line-height: 3;
+
+        }
+
+        div.move:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+        @media screen and (min-width: 768px) {
+            #fullpage {
+                /* background-color: yellow; */
+                width: 90%;
+                margin: 0 auto;
+                padding-top: 100px;
+                height: 800px;
+            }
+
+            .container_culture_event_list {
+                width: 70%;
+                max-width: 600px;
+                background-color: white;
+                margin: 0 auto;
+                height: auto;
+                margin-bottom: 50px;
+            }
+
+
+            /* 검색바 */
+            .search-container {
+                width: 90%;
+                margin: 30px 5% -80px 5%;
+            }
+
+            input#search-bar {
+                height: 45px;
+                font-size: 1rem;
+                border: 1px solid #a3a3a3;
+                outline: none;
+            }
+
+            .search-icon {
+                width: 65px;
+                height: 65px;
+                top: -56px;
+                right: -5px;
+            }
+
+            .eventlist {
+                margin-top: 100px;
+            }
+
+            .title>h3 {
+                padding-top: 20px;
+                font-size: 25px;
+            }
+
+            .eventlisttext {
+                font-size: 20px;
+
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s"
+                        alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p>
+                                <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button
+                                        onclick="window.location.href='../member/member_info_change.html'"
+                                        class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'"
+                                        class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'"
+                                        class="btn_login">로그인</button>
+                                </div>
+                            </li>
+                            <li class="page1"><a href="../facility/facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+                var mBtn = $(".smallmenu");
+                var closeBtn = $(".xmenu");
+
+                // 버튼 클릭 이벤트
+                $(mBtn).click(function () {
+                    $("nav").css("right", "0");
+                    $(closeBtn).css("display", "block");
+                });
+                // 닫기 버튼 클릭 이벤트
+                $(closeBtn).click(function () {
+                    $("nav").css("right", "-100%");
+                    $(closeBtn).css("display", "none");
+                });
+                // 전체 화면 클릭 이벤트
+                $(document).click(function (event) {
+                    if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                        $("nav").css("right", "-100%");
+                        $(closeBtn).css("display", "none");
+                    }
+                });
+                // nav 안에서는 닫히지 않게
+                $("nav").click(function (e) {
+                    e.stopPropagation();
+                });
+            });
+        </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function () {
+                window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+        </script>
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <div class="title">
+                <h3 style="text-align: center;">문화 행사 안내</h3>
+            </div>
+            <div class="container_culture_event_list">
+                <div class="eventlisttext" style="text-align: center;">
+                    <h4 class="toptext">문화 행사</h4>
+                </div>
+                <!-- <form class="search-container">
+                    <input type="text" id="search-bar">
+                    <a href="#"onclick="search_word()"><img class="search-icon"
+                            src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"></a>
+                </form> -->
+                <div class="loading-bar">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <h2>loading ...</h2>
+                </div>
+                <section class="eventlist" id="culture-list">
+                    <button onclick="window.location.href='culture_detail.html'">
+                        <p>뮤지컬/오페라</p><br>
+                        <h4>오페라 갈라</h4><br>
+                        <p>2024.12.07~2024.12.07</p>
+                    </button>
+                </section>
+                <div id="culture-list"></div>
+                <div id="number-list">
+                    <div class="number-lists">
+                        <div onclick="page_minus()" class="move" id="back">&lt;</div>
+                        <div class="number"></div>
+                        <div onclick="page_plus()" class="move" id="front">&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <footer>
+            <div>
+                ⓒ COPYLIGHT 2024 BY MONEY FORCE GROP
+            </div>
+        </footer> -->
+
+</body>
+<script>
+    const key = '6265704e6d6c686a373970714a4862'
+    const urlParams = new URLSearchParams(window.location.search).get('category');
+    const lists = document.querySelector('#culture-list')
+    let category = urlParams
+    let title = ''
+    let url
+    const categorys = document.querySelector('.toptext')
+    categorys.innerText = urlParams
+    const back = document.querySelector('#back')
+    const front = document.querySelector('#front')
+    let bigPage = 1
+    let pagenumber = document.querySelector('.number')
+
+    const loadingBar = document.querySelector('.loading-bar'); // 로딩바 요소를 선택합니다.
+
+    paging(1)
+
+    function showLoadingBar() {
+        loadingBar.style.display = 'block'; // 로딩바를 보이게 합니다.
+    }
+
+    function hideLoadingBar() {
+        loadingBar.style.display = 'none'; // 로딩바를 숨깁니다.
+    }
+
+    function search_word() {
+        bigPage = 1
+        title = document.querySelector('#search-bar').value
+        paging(1, bigPage)
+    }
+
+    function paging(bigPage) {
+        showLoadingBar(); // API 호출 전에 로딩바를 표시합니다.
+        lists.replaceChildren()
+        let start = 10 * (bigPage - 1) + 1
+        let end = 10 * (bigPage) + 1
+        url = `http://openapi.seoul.go.kr:8088/${key}/json/culturalEventInfo/${start}/${end}/${category}/${title}`
+        fetch(url)
+            .then((response) => {
+                return response.json()
+            })
+            .then((data) => {
+                for (i = 0; i < data.culturalEventInfo.row.length - 1; i++) {
+                    let list = document.createElement('button')
+                    let codename = data.culturalEventInfo.row[i]['CODENAME']
+                    let title = data.culturalEventInfo.row[i]['TITLE']
+                    let date = data.culturalEventInfo.row[i]['DATE']
+                    let free = data.culturalEventInfo.row[i]['IS_FREE']
+                    let link = data.culturalEventInfo.row[i]['HMPG_ADDR']
+                    let place = data.culturalEventInfo.row[i]['PLACE']
+                    let ORG_NAME = data.culturalEventInfo.row[i]['ORG_NAME']
+                    let image = data.culturalEventInfo.row[i]['MAIN_IMG']
+                    let cost = data.culturalEventInfo.row[i]['USE_FEE']
+                    let target = data.culturalEventInfo.row[i]['USE_TRGT']
+                    pagenumber.innerText = bigPage
+                    list.innerHTML += `  
+                    <h2>${title}</h2>
+                    <br>
+                    <br>
+                    <div style="display:flex; justify-content:space-around">
+                        <div style="width:120px; height:200px; padding-top:50px;">
+                            <p style="font-weight:bold;">유료여부 : ${free}</p>
+                            <br>
+                            <p style="font-weight:bold;">가격 : ${cost}</p>
+                            <br>
+                            <p style="font-weight:bold;">장소 : ${place}</p>
+                            <br>
+                            <p style="font-weight:bold;">대상 : ${target}</p>
+                        </div>
+                        <div style="width:150px; height:200px; margin:0 auto; padding-top:20px;">
+                                <img src=${image} width=100% height=100%>
+                        </div>
+                    </div>
+                    <p style="text-align:right; color:grey; font-size:10px; margin-top:5px">${date}</p>
+                    `
+                    lists.appendChild(list)
+                    list.onclick = function () {
+                        window.location.href = `${link}`
+                    }
+                }
+                checking(data.culturalEventInfo.row.length)
+                hideLoadingBar(); // 데이터가 로드된 후 로딩바를 숨깁니다
+            })
+    }
+
+    function checking(row) {
+        if (bigPage == 1) {
+            back.style.visibility = 'hidden'
+        } else {
+            back.style.visibility = 'visible'
+        }
+        if (row <= 10) {
+            front.style.visibility = 'hidden'
+        } else {
+            front.style.visibility = 'visible'
+        }
+    }
+
+
+
+    function page_plus() {
+        bigPage += 1
+        paging(bigPage)
+    }
+
+    function page_minus() {
+        if (bigPage > 1) {
+            bigPage -= 1
+            paging(bigPage)
+        }
+    }
+
+
+
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const token = sessionStorage.getItem('token');
+        const userid = sessionStorage.getItem('userid')
+        if (token) {
+            lg_btn.style.display = 'none'
+            info_btn.style.display = 'block'
+            my_btn.style.display = 'block'
+            logout.style.display = 'block'
+            userid_view.style.display = 'block'
+            welcome.style.display = 'block'
+            userid_view.innerText = `${userid}님`
+        }
+    })
+
+    function logout_id() {
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('userid');
+        alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+        window.location.href = '/';
+    };
+
+    logout.addEventListener('click', logout_id)
+</script>
+
+</html>

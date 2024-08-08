@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> SAVEMORE | 글수정 </title>
+    
+    <!--아이콘-->
+    <link rel="icon" type="image/png" href="../../img/logo1.png">
+
+    <!--글씨체-->
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <!--style-->
+    <link rel="stylesheet" href="../../css/slick.css">
+    <link rel="stylesheet" href="../../css/slick-theme.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+
+    <!-- script libraries -->
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="../../js/jquery.fullPage.js"></script>
+    <script src="../../js/slick.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script src="./google-apps-script.js"></script>
+
+    <style>
+        /* 앱 화면을 기준으로 개발 */
+
+        body {
+            min-width: 375px;
+        }
+
+        #fullpage {
+            height: auto;
+        }
+
+        .container_com_reg {
+            margin: 0 auto;
+            /*min-width: 375px; */
+            max-width: 800px;
+            width: 90%;
+            height: auto;
+            /* height: 650px; */
+            background-color: white;
+            /*색 골라야함*/
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: white;
+            font-size: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            margin: 15px auto;
+            font-size: 17px;
+            color: black;
+        }
+
+        .box1 {
+            border: 1px solid darkgray;
+            width: 85%;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 10px;
+            overflow: auto;
+        }
+
+        .box1 span {
+            width: 100%;
+            border-bottom: 1px solid darkgray;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #text_tit {
+            margin: 0 auto;
+            width: 100%;
+            height: 40px;
+            font-size: 13px;
+            padding: 10px;
+            border: 1px solid white;
+            outline: none;
+        }
+
+        #content {
+            width: 90%;
+            height: 500px;
+            height: 250px;
+            border: 1px solid white;
+            padding: 10px;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .box2 {
+            margin: 15px auto;
+            /* border: 1px solid darkgray ; */
+            width: 85%;
+            height: 300px;
+            overflow: auto;
+        }
+
+        .box2 span {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            border-bottom: 1px solid darkgray;
+        }
+        .btn_warp{
+            width: 90%;
+            margin: 20px auto;
+            display: flex;
+            justify-content : space-around;  
+        }
+        #btn1 {
+            width: 43%;
+            padding: 10px;
+            background-color: white;
+            color: #5271ff;
+            transition: all 0.5s ease;
+            border-radius: 5px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        #btn2 {
+            width: 43%;
+            padding: 10px;
+            background-color: white;
+            color: rgb(61, 61, 61);
+            transition: all 0.5s ease;
+            border-radius: 5px;
+            border: 1px solid #5271ff;
+            cursor: pointer;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px x;
+            border: 1px solid #969696;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 12px;
+            height: 90px;
+            outline: none;
+        }
+
+
+        #btn2:hover {
+            background-color: white;
+            color: #5271FF;
+            font-weight: 800;
+        }
+        
+        .filebox{
+            width: 90%;
+            margin: 20px auto 10px;
+            display: flex;
+            justify-content : space-around;
+        }
+        .filebox .upload-name {
+            height: 40px;
+            padding: 0 10px;
+            vertical-align: middle;
+            border: 1px solid #dddddd;
+            width: 55%;
+            color: #999999;
+        }
+
+        .filebox label {
+            margin-top: 2px;
+            box-sizing: border-box;
+            text-align: center;
+            width: 35%;
+            height: 35px;            
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #999999;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .filebox input[type="file"] {
+            position: absolute;
+            width: 0;
+            height: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+        }
+
+        /*태블릿 이상 커졌을 때 반응형은 밑에서 수정!*/
+        @media screen and (min-width: 768px) {
+            #fullpage {
+                /* background-color: yellow; */
+                width: 70%;
+                margin: 0 auto;
+                padding-top: 100px;
+                height: auto;
+            }
+
+            .container_con_reg {
+                width: 60%;
+                max-width: 500px;
+                background-color: white;
+                margin: 0 auto;
+                height: auto;
+            }
+
+            .btn_warp{
+                width: 70%;
+                max-width: 880px;
+            }
+            
+            .box1 {
+                height: 600px;
+            }
+
+            h2 {
+                margin: 40px auto;
+                color: white;
+                font-size: 25px;
+            }
+
+            h3 {
+                margin: 10px 30px;
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            #text_tit {
+                height: 50px;
+                font-size: 15px;
+                padding: 20px;
+
+            }
+
+        #content {
+            padding: 20px;
+            font-size: 15px;
+            width: 93%;
+            height: 400px;
+        }
+        .filebox{
+            margin: 40px auto 50px;
+            font-size: 15px;
+        }
+        .filebox .upload-name {
+            height: 50px;
+            font-size: 15px;
+        }
+
+        .filebox label {
+            height: 50px;  
+            padding-top: 15px;
+        }          
+
+        #btn1, #btn2{
+            font-size: 20px;
+        }
+        }
+    
+    </style>
+
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!--header_wrap-->
+        <div id="header_wrap">
+            <div class="header_content">
+
+                <!--header-->
+                <header>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ86P31VnV0AiBpq9l8eQVsJwAmflfVlBAb-Q&s" alt="뒤로 가기" id="backButton" style="width: 17px; height: 25px;">
+                    <h1><a href="../../../index.html">SaveMore</a></h1>
+
+                    <!--nav-->
+                    <div class="drawer_menu">
+                        <div class="smallmenu"></div>
+                    </div>
+                    <nav>
+                        <div class="xmenu"></div>
+                        <ul>
+                            <li class="mine">
+                                <!-- <h3>Money Force</h3> -->
+                                <div class="containerimg">
+                                    <img src="../../img/logo3.png" alt="" style="display: block;">
+                                </div>
+                                <p id="userid_view">김사과님</p> <p id="welcome">환영합니다</p>
+                                <div class="btn_warp"><button onclick="window.location.href='../member/member_info_change.html'" class="btn_info">회원정보</button>
+                                    <button onclick="window.location.href='../member/post_mine.html'" class="btn_my">내가쓴글</button>
+                                    <button onclick="window.location.href='../main/login.html'" class="btn_login">로그인</button></div>
+                            </li>
+                            <li class="page1"><a href="../facility/facility_category.html">편의시설</a></li>
+                            <li class="page2"><a href="../lecture/lecture_category.html">무료강의</a></li>
+                            <li class="page2"><a href="../culture/culture_choice.html">문화생활</a></li>
+                            <li class="page3"><a href="../price/price_choice.html">물가소식</a></li>
+                            <li class="page4"><a href="../bus/bus_guchoice.html">셔틀버스</a></li>
+                            <a id="logout">
+                                <i class="xi-power-off xi-2x " style="width: 100%;text-align: center; "></i>
+                                <h3>Logout</h3>
+                            </a>
+                        </ul>
+                    </nav>
+                </header>
+            </div>
+        </div>
+
+        <!-- 메뉴스크립트 -->
+        <script>
+            $(document).ready(function () {
+               var mBtn = $(".smallmenu");
+               var closeBtn = $(".xmenu");
+
+               // 버튼 클릭 이벤트
+               $(mBtn).click(function () {
+                   $("nav").css("right", "0");
+                   $(closeBtn).css("display", "block");
+               });
+               // 닫기 버튼 클릭 이벤트
+               $(closeBtn).click(function () {
+                   $("nav").css("right", "-100%");
+                   $(closeBtn).css("display", "none");
+               });
+                // 전체 화면 클릭 이벤트
+               $(document).click(function (event) {
+                   if (!$(event.target).closest('nav').length && !$(event.target).closest('.smallmenu').length && $("nav").css("right") === "0px") {
+                       $("nav").css("right", "-100%");
+                       $(closeBtn).css("display", "none");
+                   }
+               });
+               // nav 안에서는 닫히지 않게
+               $("nav").click(function (e) {
+                   e.stopPropagation();
+               });
+           });
+       </script>
+        <!--사진파일업로드-->
+        <script>
+            $("#file").on('change', function () {
+                var fileName = $("#file").val();
+                $(".upload-name").val(fileName);
+            });
+        </script>
+
+        <!--뒤로가기 스크립트 -->
+        <script>
+            document.getElementById('backButton').addEventListener('click', function() {
+              window.history.back(); // 뒤로 가는 기능을 수행합니다.
+            });
+          </script>
+
+        <!--fullpage-->
+        <div id="fullpage">
+            <!--수정할 곳 container_(페이지이름)-->
+            <div class="title">
+                <h2>물가정보 커뮤니티</h2>
+            </div>
+            <div class="container_com_reg">
+                <div class="com_wrap">
+                    <h3>글수정</h3>
+                    <div class="box1"><span>
+                            <input type="text" name="text_tit" id="text_tit" placeholder="글제목">
+                        </span>
+                        <textarea name="content" id="content" cols="50" rows="5" placeholder="내용을 입력하세요"></textarea>
+                    </div>
+                    <div class="filebox">
+                        <input class="upload-name" value="첨부파일" placeholder="첨부파일">
+                        <label for="file">파일찾기</label>
+                        <input type="file" id="file">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="btn_warp">
+        <button onclick="window.location.href='post_mine.html'" id="btn1">수정완료</button><button onclick="window.location.href='community_check4.html'" id="btn2">취소</button>
+    </div>
+    </div>
+
+    <!-- <footer>
+            <div>
+                ⓒ COPYLIGHT 2024 BY MONEY FORCE GROP
+            </div>
+        </footer> -->
+    </div>
+</body>
+<script>
+    const info_btn = document.querySelector('.btn_info')
+    const my_btn = document.querySelector('.btn_my')
+    const lg_btn = document.querySelector('.btn_login')
+    const logout = document.querySelector('#logout')
+    const userid_view = document.getElementById('userid_view')
+    const welcome = document.getElementById('welcome')
+
+    document.addEventListener('DOMContentLoaded',function() {
+      const token = sessionStorage.getItem('token');
+      const userid = sessionStorage.getItem('userid')
+      if (token) {
+        lg_btn.style.display = 'none'
+        info_btn.style.display = 'block'
+        my_btn.style.display = 'block'
+        logout.style.display = 'block'
+        userid_view.style.display = 'block'
+        welcome.style.display = 'block'
+        userid_view.innerText = `${userid}님`
+      } 
+    })
+
+    function logout_id() {
+      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('userid');
+      alert('로그아웃 되었습니다. 메인페이지로 이동합니다.');
+      window.location.href = '/';
+    };
+
+    logout.addEventListener('click',logout_id)
+</script>
+</html>
