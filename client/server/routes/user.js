@@ -26,7 +26,7 @@ router.post('/number',(req,res)=>{
     async function printTokenResult(phone, token){
 
         const mysms = coolsms.default;
-        const messageService = new mysms("NCSNZ3LCEPD0B6F9","CPMZZ3BLKI7LPOCIV8X4WYXWWGCTVTFA");
+        const messageService = new mysms("","");
         const result = await messageService.sendOne({
             to: `${phone}`,
             from : '01084454689',
