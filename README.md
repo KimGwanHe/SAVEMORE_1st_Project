@@ -1,6 +1,7 @@
 # 🚍 사회 취약 계층을 위한 SAVEMORE
 
-/ SAVEMORE 대표 표지.png /
+![image](https://github.com/user-attachments/assets/607e14c1-2dc9-452f-a492-07dd3c1223ab)
+
 
 <br>
 
@@ -39,7 +40,8 @@
 
 ## 3. IA(Information Architecture)
 
-/ IA 페이지.png /
+![image](https://github.com/user-attachments/assets/e0297231-f994-49c5-94cc-a02bb1a7e46e)
+
 
 <br>
 
