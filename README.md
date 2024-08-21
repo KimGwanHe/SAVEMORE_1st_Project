@@ -55,6 +55,14 @@
 
 <br>
 
-## 4. 페이지별 기능
+## 4. 실제 화면
+
+<div align="center">
+  
+![image](https://github.com/user-attachments/assets/85c11ee4-eb9b-4b3c-947a-adcc703ebdd3)  ![image](https://github.com/user-attachments/assets/fb8ff818-839e-47af-98ad-3802f60c33e9)  
+![image](https://github.com/user-attachments/assets/78ba4ffe-476f-4d7b-ac91-45fb8cd5a8fc)  ![image](https://github.com/user-attachments/assets/f34498a7-a9e9-4f2d-97ce-19e6dfe2d743)  
+![image](https://github.com/user-attachments/assets/d891de7e-d519-4619-9dbb-3dfd66e39114)
+
+</div>
 
 <br>
